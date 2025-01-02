@@ -1,3 +1,10 @@
+using Cental.BusinessLayer.Abstract;
+using Cental.BusinessLayer.Concrete;
+using Cental.DataAccesLayer.Abstract;
+using Cental.DataAccesLayer.Concret;
+using Cental.DataAccesLayer.Context;
+using Cental.DataAccesLayer.Repositories;
+
 namespace Cental.WebUI
 {
     public class Program
@@ -7,6 +14,14 @@ namespace Cental.WebUI
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddDbContext<CentalDbContext>();
+
+            builder.Services.AddScoped<IAboutService,AboutManager>();
+            builder.Services.AddScoped<IAboutDal,EfAboutDal>();
+            builder.Services.AddScoped(typeof(IGenericDal<>), typeof(GenericRepository<>));
+            builder.Services.AddScoped(typeof(IGenericService<>), typeof(GenericManager<>));
+
+
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
