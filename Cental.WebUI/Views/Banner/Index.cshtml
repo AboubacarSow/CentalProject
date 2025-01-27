@@ -1,0 +1,30 @@
+﻿@model List<ResultBannerDto>
+@{
+    ViewData["Title"] = "Öne Çıkan Alanı";
+    Layout = "~/Views/AdminLayout/Layout.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Başlık</th>
+        <th>Açıklama</th>
+        <th>Resıim</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.BannerId</td>
+            <td>@item.Title</td>
+            <td>@item.Description</td>
+            <td> <img src="@item.ImageUrl" style="width:100px; height:100px; border-radius:50%" /> </td>
+            <td><a asp-action="Delete" asp-route-id="@item.BannerId" class="btn btn-danger">Sil</a> </td>
+            <td><a asp-action="Update" asp-route-id="@item.BannerId" class="btn btn-success">Güncelle</a> </td>
+        </tr>
+    }
+</table>
+<a asp-action="Create" asp-controller="Banner" class="btn btn-primary"> <i class="fa fa-plus me-2"></i> Ekle</a>
+
+
