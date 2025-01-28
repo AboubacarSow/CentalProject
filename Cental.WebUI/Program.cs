@@ -1,9 +1,14 @@
 using Cental.BusinessLayer.Abstract;
 using Cental.BusinessLayer.Concrete;
+using Cental.BusinessLayer.Extensions;
+using Cental.BusinessLayer.Validators;
+using Cental.BusinessLayer.Validators.BrandDtosValidation;
 using Cental.DataAccesLayer.Abstract;
 using Cental.DataAccesLayer.Concret;
 using Cental.DataAccesLayer.Context;
 using Cental.DataAccesLayer.Repositories;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using System.Reflection;
 
 namespace Cental.WebUI
@@ -17,21 +22,13 @@ namespace Cental.WebUI
             // Add services to the container.
             builder.Services.AddDbContext<CentalDbContext>();
 
-            builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());    
+            builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
-            builder.Services.AddScoped<IAboutService,AboutManager>();
-            builder.Services.AddScoped<IAboutDal,EfAboutDal>();
+            builder.Services.AddServicesConfiguration();
 
-            builder.Services.AddScoped<IBannerService,BannerManager>();
-            builder.Services.AddScoped<IBannerDal,EfBannerDal>();
-
-            builder.Services.AddScoped<IBrandService, BrandManager>();
-            builder.Services.AddScoped<IBrandDal,EfBrandDal>(); 
-
-            builder.Services.AddScoped(typeof(IGenericDal<>), typeof(GenericRepository<>));
-            builder.Services.AddScoped(typeof(IGenericService<>), typeof(GenericManager<>));
-
-
+            builder.Services.AddFluentValidationAutoValidation()
+                .AddFluentValidationClientsideAdapters()
+                .AddValidatorsFromAssemblyContaining<BrandValidator>(); 
 
             builder.Services.AddControllersWithViews();
 

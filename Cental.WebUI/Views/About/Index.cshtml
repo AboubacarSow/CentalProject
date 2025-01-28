@@ -20,10 +20,10 @@
             <td>@item.AboutId</td>
             <td>@item.Vision</td>
             <td>@item.Mission</td>
-            <td><a asp-action="Delete" asp-route-id="@item.AboutId" class="btn btn-danger">Sil</a> </td>
-            <td><a asp-action="Update" asp-route-id="@item.AboutId" class="btn btn-success">Güncelle</a> </td>
+            <td><a asp-action="Delete" asp-route-id="@item.AboutId" class="btn btn-danger"><i class="fa fa-trash me-2"></i> Sil</a> </td>
+            <td><a asp-action="Update" asp-route-id="@item.AboutId" class="btn btn-success"><i class="fa fa-pen me-2"></i> Güncelle</a> </td>
         </tr>
     }
 </table>
-<a asp-action="Create" asp-controller="About" class="btn btn-primary"> <i class="fa fa-plus me-2"></i> Ekle</a>
+<a asp-action="Create" asp-controller="About" class="btn btn-primary"> <i class="fa fa-plus-circle me-2"></i> Ekle</a>
 

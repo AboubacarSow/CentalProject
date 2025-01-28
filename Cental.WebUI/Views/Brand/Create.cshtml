@@ -1,0 +1,14 @@
+﻿@model CreateBrandDto
+@{
+    ViewData["Title"] = "Marka Oluşturma";
+    Layout = "~/Views/AdminLayout/Layout.cshtml";
+}
+
+<form method="post">
+    <label class="form-label">Marka Adı</label>
+    <input asp-for="BrandName" class="form-control" />
+    <span asp-validation-for="BrandName" class="text-danger"></span>
+    <br />
+    <br />
+    <button class="btn btn-outline-primary"><i class="fa fa-save me-2"></i> Kaydet</button>
+</form>

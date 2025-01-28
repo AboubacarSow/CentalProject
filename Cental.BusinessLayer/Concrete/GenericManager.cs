@@ -1,5 +1,6 @@
 ﻿using Cental.BusinessLayer.Abstract;
 using Cental.DataAccesLayer.Abstract;
+using Cental.EntityLayer.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace Cental.BusinessLayer.Concrete
         {
             _genericdal = genericdal;   
         }
+
         public void TCreate(T entity)
         {
             _genericdal.Create(entity);

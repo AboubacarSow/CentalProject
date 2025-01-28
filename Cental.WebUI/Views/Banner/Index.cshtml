@@ -20,8 +20,8 @@
             <td>@item.Title</td>
             <td>@item.Description</td>
             <td> <img src="@item.ImageUrl" style="width:100px; height:100px; border-radius:50%" /> </td>
-            <td><a asp-action="Delete" asp-route-id="@item.BannerId" class="btn btn-danger">Sil</a> </td>
-            <td><a asp-action="Update" asp-route-id="@item.BannerId" class="btn btn-success">Güncelle</a> </td>
+            <td><a asp-action="Delete" asp-route-id="@item.BannerId" class="btn btn-danger"> <i class="fa fa-trash me-2"></i> Sil</a> </td>
+            <td><a asp-action="Update" asp-route-id="@item.BannerId" class="btn btn-success"><i class="fa fa-pen me-2"></i> Güncelle</a> </td>
         </tr>
     }
 </table>

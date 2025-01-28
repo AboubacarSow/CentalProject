@@ -10,7 +10,7 @@ namespace Cental.DataAccesLayer.Repositories
 {
     public class GenericRepository<T> : IGenericDal<T> where T : class
     {
-        private readonly CentalDbContext _context;
+        protected readonly CentalDbContext _context;
 
         public GenericRepository(CentalDbContext context)
         {
