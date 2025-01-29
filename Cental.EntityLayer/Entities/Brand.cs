@@ -9,7 +9,7 @@ namespace Cental.EntityLayer.Entities
     public class Brand
     {
         public int BrandId { get; set; }    
-        public required string BrandName { get; set; }    
-        public required List<Car> Cars { get; set; }
+        public string? BrandName { get; set; }    
+        public virtual List<Car> Cars { get; set; }
     }
 }

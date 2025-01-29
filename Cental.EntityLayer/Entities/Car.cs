@@ -20,7 +20,7 @@ namespace Cental.EntityLayer.Entities
         public required string Transmission {  get; set; }
         public int Kilometer {  get; set; }
         public int BrandId {  get; set; }   
-        public Brand Brand { get; set; }
-        public List<Review> Reviews { get; set; }
+        public virtual Brand Brand { get; set; }
+        public virtual List<Review> Reviews { get; set; }
     }
 }

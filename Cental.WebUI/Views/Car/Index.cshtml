@@ -27,9 +27,10 @@
                 <td>@car.Brand.BrandName</td>
                 <td>@car.Year</td>
                 <td>@car.Kilometer</td>
-                <td><a asp-action="Delete" asp-route-id="@car.CarId" class="btn btn-danger"><i class="fa fa-trash me-2"></i>Sil </a></td>
-                <td><a asp-action="Update" asp-route-id="@car.CarId" class="btn btn-info"> <i class="fa fa-pen me-2"></i>Güncelle </a> </td>
+                <td><a asp-action="Delete" asp-route-id="@car.CarId" class="btn btn-danger"><i class="fa fa-trash me-2"></i> </a> </td>
+                <td><a asp-action="Update" asp-route-id="@car.CarId" class="btn btn-success"> <i class="fa fa-pen me-2"></i> </a> </td>
             </tr>
         }
     </tbody>
 </table>
+<a asp-action="Create" asp-controller="Car" class="btn btn-outline-primary"> <i class="fa fa-plus-circle me-2"></i> Ekle</a>

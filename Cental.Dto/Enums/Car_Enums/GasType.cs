@@ -1,0 +1,13 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Cental.DtoLayer.Enums.Car_Enums
+{
+    public enum GasType
+    {
+        Hybrit, Elektrik, Dizel, Benzin,LPG
+    }
+}

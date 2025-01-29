@@ -7,6 +7,7 @@ using Cental.DataAccesLayer.Abstract;
 using Cental.DataAccesLayer.Concret;
 using Cental.DataAccesLayer.Context;
 using Cental.DataAccesLayer.Repositories;
+using Cental.EntityLayer.Entities;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using System.Reflection;
@@ -21,6 +22,7 @@ namespace Cental.WebUI
 
             // Add services to the container.
             builder.Services.AddDbContext<CentalDbContext>();
+            builder.Services.AddIdentity<AppUser,AppRole>().AddEntityFrameworkStores<CentalDbContext>();
 
             builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 

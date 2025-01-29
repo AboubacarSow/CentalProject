@@ -20,9 +20,8 @@ namespace Cental.BusinessLayer.Validators.CarDtosValidation
             RuleFor(x => x.Kilometer).NotEmpty().WithMessage("Km değeri boş Bırakılamaz");
             RuleFor(x => x.GearType).NotEmpty().WithMessage("Vites değeri boş Bırakılamaz");
             RuleFor(x => x.SeatCount).NotEmpty().WithMessage("Koltuk Sayısı boş Bırakılamaz");
-            RuleFor(x => x.Brand).NotEmpty().WithMessage("Marka Adı boş Bırakılamaz");
             RuleFor(x => x.ImageUrl).NotEmpty().WithMessage("Resim Yükleyin");
-            RuleFor(x => x.Reviews).NotEmpty().WithMessage("Resim Yükleyin");
+ 
         }
     }
 }

@@ -1,0 +1,56 @@
+﻿@model CreateCarDto
+@{
+    ViewData["Title"] = "Araba Ekleme";
+    Layout = "~/Views/AdminLayout/Layout.cshtml";
+}
+
+<form method="post">
+    <div class="row">
+        <div class="col-lg-6">
+            <label class="form-label">Araba Modeli</label>
+            <input asp-for="ModelName" class="form-control " /><br />
+
+            <label class="form-label">Araba Görseli</label>
+            <input asp-for="ImageUrl" class="form-control " /><br />
+
+            <label class="form-label">Model Yılı</label>
+            <input asp-for="Year" class="form-control " /><br /> 
+    
+            <label class="form-label">Kiralama Bedeli</label>
+            <input asp-for="Price" class="form-control " /><br />
+
+            <label class="form-label">Koltuk Sayısı</label>
+            <input asp-for="SeatCount" class="form-control " /><br />
+
+        </div>
+        <div class="col-lg-6">
+             <label class="form-label">Kilometer Bilgisi</label>
+            <input asp-for="Kilometer" class="form-control " /><br />
+
+             <label class="form-label">Marka</label>
+            <select asp-items="@ViewBag.Brands" asp-for="BrandId" class="form-control">
+                 <option>Marka Seçiniz</option>
+            </select>
+            <br />
+            <label class="form-label">Yakıt Türünü</label>
+            <select asp-items="@ViewBag.Gastypes" asp-for="GasType" class="form-control">
+                 <option>Yakıt Türünü Seçiniz</option>
+            </select>
+            <br />
+             <label class="form-label">Vites Türünü</label>
+            <select asp-items="@ViewBag.GearTypes" asp-for="GearType" class="form-control">
+                 <option>Vites Türünü Seçiniz</option>
+            </select>
+            <br />
+              <label class="form-label">Vites Özelliği</label>
+            <select asp-items="@ViewBag.Transmissions" asp-for="Transmission" class="form-control">
+                <option>Vites Özelliğini Seçiniz</option>
+            </select>
+            <br />
+
+        </div>
+    </div>
+    <button class="btn btn-outline-primary"><i class="fa fa-save me-2"></i>Kaydet </button>
+
+</form>
+

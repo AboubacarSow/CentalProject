@@ -10,17 +10,15 @@ namespace Cental.DtoLayer.CarDtos
     public class CreateCarDto
     {
         public int CarId { get; set; }
-        public required string ModelName { get; set; }
-        public required string ImageUrl { get; set; }
-        public required decimal Price { get; set; }
-        public required int SeatCount { get; set; }
-        public required string GearType { get; set; }
-        public required string GasType { get; set; }
+        public  string ModelName { get; set; }
+        public  string ImageUrl { get; set; }
+        public  decimal Price { get; set; }
+        public int SeatCount { get; set; }
+        public  string GearType { get; set; }
+        public  string GasType { get; set; }
         public int Year { get; set; }
-        public required string Transmission { get; set; }
+        public  string Transmission { get; set; }
         public int Kilometer { get; set; }
         public int BrandId { get; set; }
-        public Brand Brand { get; set; }
-        public List<Review> Reviews { get; set; }
     }
 }
