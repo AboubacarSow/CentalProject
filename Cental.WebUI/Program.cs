@@ -3,6 +3,7 @@ using Cental.BusinessLayer.Concrete;
 using Cental.BusinessLayer.Extensions;
 using Cental.BusinessLayer.Validators;
 using Cental.BusinessLayer.Validators.BrandDtosValidation;
+using Cental.BusinessLayer.Validators.ErrorDescriber;
 using Cental.DataAccesLayer.Abstract;
 using Cental.DataAccesLayer.Concret;
 using Cental.DataAccesLayer.Context;
@@ -10,6 +11,8 @@ using Cental.DataAccesLayer.Repositories;
 using Cental.EntityLayer.Entities;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using System.Reflection;
 
 namespace Cental.WebUI
@@ -22,7 +25,13 @@ namespace Cental.WebUI
 
             // Add services to the container.
             builder.Services.AddDbContext<CentalDbContext>();
-            builder.Services.AddIdentity<AppUser,AppRole>().AddEntityFrameworkStores<CentalDbContext>();
+            builder.Services.AddIdentity<AppUser,AppRole>(option =>
+            {
+                option.User.RequireUniqueEmail = true;
+               
+
+            }).AddEntityFrameworkStores<CentalDbContext>()
+              .AddErrorDescriber<CustumErrorDescriber>();
 
             builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
@@ -30,9 +39,17 @@ namespace Cental.WebUI
 
             builder.Services.AddFluentValidationAutoValidation()
                 .AddFluentValidationClientsideAdapters()
-                .AddValidatorsFromAssemblyContaining<BrandValidator>(); 
+                .AddValidatorsFromAssemblyContaining<BrandValidator>();
 
-            builder.Services.AddControllersWithViews();
+            builder.Services.AddControllersWithViews(option =>
+            {
+                option.Filters.Add(new AuthorizeFilter());
+            });
+            builder.Services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Login/Index";
+                options.LogoutPath = "/Login/Logout";
+            });
 
             var app = builder.Build();
 
@@ -49,6 +66,7 @@ namespace Cental.WebUI
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(

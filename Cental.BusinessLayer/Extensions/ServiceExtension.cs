@@ -30,6 +30,8 @@ namespace Cental.BusinessLayer.Extensions
             
             services.AddScoped(typeof(IGenericDal<>), typeof(GenericRepository<>));
             services.AddScoped(typeof(IGenericService<>), typeof(GenericManager<>));
+
+            services.AddScoped<IImageService, ImageManager>();
         }
     }
 }
