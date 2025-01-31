@@ -49,6 +49,7 @@ namespace Cental.WebUI
             {
                 options.LoginPath = "/Login/Index";
                 options.LogoutPath = "/Login/Logout";
+                options.AccessDeniedPath = "/ErrorPage/AccessDenied";
             });
 
             var app = builder.Build();
@@ -63,6 +64,7 @@ namespace Cental.WebUI
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseStatusCodePagesWithReExecute("/ErrorPage/NotFounded");
 
             app.UseRouting();
 

@@ -4,11 +4,13 @@ using Cental.DtoLayer.CarDtos;
 using Cental.DtoLayer.Enums.Car_Enums;
 using Cental.EntityLayer.Entities;
 using Cental.WebUI.Infrastructure.Extensions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Cental.WebUI.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CarController : Controller
     {
         private readonly ICarService _carManager;

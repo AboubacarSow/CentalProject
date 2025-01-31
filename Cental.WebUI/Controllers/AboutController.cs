@@ -7,7 +7,7 @@ using System.Diagnostics.Contracts;
 
 namespace Cental.WebUI.Controllers
 {
-
+    [Authorize(Roles ="Admin")]
     public class AboutController : Controller
     {
         private readonly IAboutService _aboutManager;

@@ -1,0 +1,50 @@
+﻿@model List<ResultUserDto>
+@{
+    ViewData["Title"] = "Kullanıcı Listesi";
+    Layout = "~/Views/AdminLayout/Layout.cshtml";
+}
+
+
+@{
+    int count = 0;
+}
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>No.</th>
+            <th>Ad Soydı</th>
+            <th>Kullanıcı Adı</th>
+            <th>Email</th>
+            <th>Kullanıcı Rolleri</th>
+            <th>Rol Ata</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var role in Model)
+        {
+            count++;
+            <tr>
+                <td>@count</td>
+                <td>@role.FullName</td>
+                <td>@role.UserName</td>
+                <td>@role.Email</td>
+                <td>
+                    @foreach(var r in role.Roles)
+                    {
+                        <span style="margin-left:5px">@r</span>
+
+                        
+                    }
+                </td>
+                <td class="text-center"><a asp-action="AssignRole" asp-route-id="@role.Id" class="btn btn-outline-success"><i class="fa fa-pen"></i> </a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+
+
+
+

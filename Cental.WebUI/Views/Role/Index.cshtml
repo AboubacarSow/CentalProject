@@ -1,0 +1,38 @@
+﻿@model List<ResultRoleDto>
+@{
+    ViewData["Title"] = "Rollar Listesi";
+    Layout = "~/Views/AdminLayout/Layout.cshtml";
+}
+
+
+@{
+    int count = 0;
+}
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>No.</th>
+            <th>Rol</th>
+            <th>Sil</th>
+            <th>Güncelle</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var role in Model)
+        {
+            count++;
+            <tr>
+                <td>@count</td>
+                <td>@role.Name</td>
+                <td class="text-center"><a asp-action="Delete" asp-route-id="@role.Id" class="btn btn-danger"><i class="fa fa-trash"></i> </a></td>
+                <td class="text-center"><a asp-action="Update" asp-route-id="@role.Id" class="btn btn-success"><i class="fa fa-pen"></i> </a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+<a class="btn btn-primary" asp-action="Create"><i class="fa fa-plus-circle"></i> Ekle</a>
+
+
