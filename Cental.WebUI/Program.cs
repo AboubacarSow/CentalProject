@@ -64,7 +64,7 @@ namespace Cental.WebUI
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseStatusCodePagesWithReExecute("/ErrorPage/NotFounded");
+            app.UseStatusCodePagesWithReExecute("/ErrorPage/NotFoundedPage");
 
             app.UseRouting();
 

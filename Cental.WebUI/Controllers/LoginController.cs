@@ -16,7 +16,7 @@ namespace Cental.WebUI.Controllers
 			_signManager = signManager;
 		}
 
-		public async Task<IActionResult> IndexAsync()
+		public async Task<IActionResult> Index()
 		{
 			await _signManager.SignOutAsync();
 			return View();
