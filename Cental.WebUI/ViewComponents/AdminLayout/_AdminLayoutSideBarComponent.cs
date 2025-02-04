@@ -10,7 +10,7 @@ namespace Cental.WebUI.ViewComponents.AdminLayout
         {
             var user=await _userManager.FindByNameAsync(User.Identity.Name);
             ViewBag.FullName = String.Join(" ", user.FirstName, user.LastName);
-            ViewBag.UserImage=user.ImagerUrl;
+            ViewBag.UserImage = user.ImageUrl;
             return View();  
         }
     }

@@ -41,7 +41,7 @@ namespace Cental.WebUI.Controllers
 				user.LastName=_userDto.LastName;
 				user.Email=_userDto.Email;
 				user.PhoneNumber=_userDto.PhoneNumber;
-				user.ImagerUrl = _userDto.ImageUrl;
+				user.ImageUrl = _userDto.ImageUrl;
 
 				var result = await _userManager.UpdateAsync(user);
 				if (result.Succeeded)
