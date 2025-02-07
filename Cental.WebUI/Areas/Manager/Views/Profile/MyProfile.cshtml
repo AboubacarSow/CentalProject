@@ -1,16 +1,18 @@
 ﻿@model ResultProfileDto
 @{
-    ViewData["Title"] = "Bilgilr";
-    Layout = "~/Views/AdminLayout/Layout.cshtml";
+    ViewData["Title"] = "Bilgilerim";
+    Layout = "~/Areas/Manager/Views/Layout/Index.cshtml";
     string defaultImage = "https://www.kindpng.com/picc/m/21-214439_free-high-quality-person-icon-default-profile-picture.png";
+
 }
 
 <div class="text-center">
     <img src="@(!String.IsNullOrEmpty(Model.ImageUrl) ? Model.ImageUrl:defaultImage)" />
-   
+
     <br />
 </div>
 
+<label class="form-label">Ad</label>
 <input class="form-control" asp-for="FirstName" type="text" readonly />
 <br />
 <label class="form-label">Soyad</label>
@@ -25,7 +27,7 @@
 <input class="form-control" asp-for="PhoneNumber" type="text" readonly />
 <br />
 <br />
-<a asp-action="Update" asp-controller="Profile" asp-area="" class="btn btn-outline-success"> <i class="fa fa-pen me-2"></i>Güncelle</a>
+<a asp-action="UpdateMyProfile" asp-controller="Profile" asp-area="Manager" class="btn btn-outline-success"> <i class="fa fa-pen me-2"></i>Güncelle</a>
 
 
 

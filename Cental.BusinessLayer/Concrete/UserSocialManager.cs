@@ -7,8 +7,9 @@ namespace Cental.BusinessLayer.Concrete
     public class UserSocialManager : GenericManager<MSocialMedia>, IUserSocialService
     {
         private readonly IUserSocialDal _userSocialDal;
-        public UserSocialManager(IGenericDal<MSocialMedia> genericdal) : base(genericdal)
+        public UserSocialManager(IGenericDal<MSocialMedia> genericdal, IUserSocialDal userSocialDal) : base(genericdal)
         {
+            _userSocialDal= userSocialDal;  
         }
 
         public List<MSocialMedia> GetByUserId(int id)

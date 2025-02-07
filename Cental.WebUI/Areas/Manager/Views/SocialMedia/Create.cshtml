@@ -1,0 +1,19 @@
+﻿@model CreateUserSocialDto
+@{
+    ViewData["Title"] = "Sosyal Media Ekleme";
+    Layout = "~/Areas/Manager/Views/Layout/Index.cshtml";
+}
+
+<form method="post">
+    <lablel class="form-label">Sosyal Media Adi</lablel>
+    <input type="text" asp-for="Name" class="form-control" /><br />
+
+    <lablel class="form-label">Ikon</lablel>
+    <input type="text" asp-for="Icon" class="form-control" /><br />
+
+    <label class="form-label">Url</label>
+    <input type="text" asp-for="Url" class="form-control"/><br />
+
+    <button class="btn btn-primary"> <i class="fa fa-plus-circle"></i>Ekle</button>
+</form>
+

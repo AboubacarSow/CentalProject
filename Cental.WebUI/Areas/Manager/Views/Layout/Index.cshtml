@@ -25,6 +25,10 @@
 
 	<!-- vendor css -->
 	<link rel="stylesheet" href="~/flat-able-admin/dist/assets/css/style.css">
+
+
+
+
 </head>
 <body class="">
 	<!-- [ Pre-loader ] start -->
@@ -49,9 +53,9 @@
 					</div>
 					<div class="collapse" id="nav-user-link">
 						<ul class="list-unstyled">
-							<li class="list-group-item"><a href="user-profile.html"><i class="feather icon-user m-r-5"></i>Profile Bilgileri</a></li>
-							<li class="list-group-item"><a asp-action="Index" asp-controller="Default"><i class="feather icon-settings m-r-5"></i>Siteye Git</a></li>
-							<li class="list-group-item"><a asp-action="Logout" asp-controller="Login"><i class="feather icon-log-out m-r-5"></i>Çıkış Yap</a></li>
+							<li class="list-group-item"><a asp-action="MyProfile" asp-controller="Profile" asp-area="Manager"><i class="feather icon-user m-r-5"></i>Profile Bilgileri</a></li>
+							<li class="list-group-item"><a asp-action="Index" asp-controller="Default" asp-area=""><i class="feather icon-settings m-r-5"></i>Siteye Git</a></li>
+							<li class="list-group-item"><a asp-action="Logout" asp-controller="Login" asp-area=""><i class="feather icon-log-out m-r-5"></i>Çıkış Yap</a></li>
 						</ul>
 					</div>
 				</div>
@@ -63,24 +67,7 @@
 					<li class="nav-item">
 						<a href="index.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
 					</li>
-					<li class="nav-item">
-						<a asp-action="Index" asp-controller="About" class="nav-link ">
-							<span class="pcoded-micon"><i class="feather icon-home"></i></span>
-							<span class="pcoded-mtext">Hakkımızda</span>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a asp-action="Index" asp-controller="Banner" class="nav-link ">
-							<span class="pcoded-micon"><i class="feather icon-home"></i></span>
-							<span class="pcoded-mtext">Öne Çıkan Alanı</span>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a asp-action="Index" asp-controller="Brand " class="nav-link ">
-							<span class="pcoded-micon"><i class="feather icon-home"></i></span>
-							<span class="pcoded-mtext">Markalar</span>
-						</a>
-					</li>
+					
 					<li class="nav-item">
 						<a asp-action="Index" asp-controller="Car" class="nav-link ">
 							<span class="pcoded-micon"><i class="feather icon-home"></i></span>
@@ -94,6 +81,7 @@
 			</div>
 		</div>
 	</nav>
+
 	<!-- [ navigation menu ] end -->
 	<!-- [ Header ] start -->
 	<header class="navbar pcoded-header navbar-expand-lg navbar-light header-dark">
@@ -280,6 +268,7 @@
 
 
 	</header>
+
 	<!-- [ Header ] end -->
 	<!-- [ Main Content ] start -->
 	<div class="pcoded-main-container">
@@ -377,5 +366,4 @@
 </body>
 
 </html>
-
 

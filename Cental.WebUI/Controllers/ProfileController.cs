@@ -4,20 +4,26 @@ using Cental.EntityLayer.Entities;
 using Mapster;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel.DataAnnotations;
 
 namespace Cental.WebUI.Controllers
 {
-	public class ProfileController(UserManager<AppUser> _userManager,IImageService _imageManager) : Controller
+    public class ProfileController(UserManager<AppUser> _userManager,IImageService _imageManager) : Controller
 	{
-		public async Task<IActionResult> Index()
+
+		public  async Task<IActionResult> Index()
+		{
+            var user = await _userManager.FindByNameAsync(User.Identity.Name);
+			var userDto=user.Adapt<ResultProfileDto>();	
+			return View(userDto);
+		}
+		public async Task<IActionResult> Update()
 		{
 			var user=await _userManager.FindByNameAsync(User.Identity.Name);
 			var userDto = user.Adapt<ProfileEditDto>();
 			return View(userDto);
 		}
 		[HttpPost]
-		public async Task<IActionResult> Index(ProfileEditDto _userDto)
+		public async Task<IActionResult> Update(ProfileEditDto _userDto)
 		{
 			var user = await _userManager.FindByNameAsync(User.Identity.Name);
 			var checkPassword = await _userManager.CheckPasswordAsync(user, _userDto.CurrentPassword);
@@ -29,6 +35,7 @@ namespace Cental.WebUI.Controllers
 					try
 					{
 						_userDto.ImageUrl = await _imageManager.SaveImageAsync(_userDto.ImageFile);
+						user.ImageUrl = _userDto.ImageUrl;
 
 					}
 					catch(Exception ex)
@@ -41,7 +48,6 @@ namespace Cental.WebUI.Controllers
 				user.LastName=_userDto.LastName;
 				user.Email=_userDto.Email;
 				user.PhoneNumber=_userDto.PhoneNumber;
-				user.ImageUrl = _userDto.ImageUrl;
 
 				var result = await _userManager.UpdateAsync(user);
 				if (result.Succeeded)
