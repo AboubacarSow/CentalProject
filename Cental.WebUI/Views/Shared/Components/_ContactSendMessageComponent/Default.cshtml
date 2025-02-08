@@ -1,0 +1,120 @@
+﻿@model CreateMessageDto
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+    Component ContactSendMessage
+*@
+
+<div class="col-xl-6 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="bg-secondary p-5 rounded">
+        <h4 class="text-primary mb-4">Mesajını Gönder</h4>
+        <form  method="post" id="formulaire" asp-action="SendMessage" asp-controller="Default">
+            <div class="row g-4">
+                <div class="col-lg-12 col-xl-6">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" asp-for="FullName" id="fullname" placeholder="Adınız" required>
+                        <label for="FullName">Adınız</label>
+                        <p class="text-danger"> @Html.ValidationMessageFor(message=>message.FullName)</p>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-xl-6">
+                    <div class="form-floating">
+                        <input type="email" class="form-control" asp-for="Email" id="email" placeholder="Email" required>
+                        <label for="Email">Email</label>
+                        <p class="text-danger"> @Html.ValidationMessageFor(message => message.Email)</p>
+                    </div>
+                </div>
+               
+                <div class="col-12">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" asp-for="Subject" id="subject" placeholder="Konu" required>
+                        <label for="Subject">Konu</label>
+                        <p class="text-danger"> @Html.ValidationMessageFor(message => message.Subject)</p>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-floating">
+                        <textarea class="form-control" placeholder="Bir mesaj birakin" asp-for="Body" id="body" style="height: 160px" required></textarea>
+                        <label for="Body">Mesaj</label>
+                    </div>
+
+                </div>
+                <div class="col-12">
+                    <button class="btn btn-light w-100 py-3" type="submit" onclick="send()">Mesaj Gönder</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+     document.getElementById('formulaire').addEventListener('submit', function(event){
+               event.preventDefault();
+               let formData = {
+                   FullName: document.getElementById("fullname").value,
+                   Email: document.getElementById("email").value,
+                   Subject: document.getElementById("subject").value,
+                   Body: document.getElementById("body").value
+              };
+               fetch("/Default/SendMessage",{
+                   method: "POST",
+                   headers: {
+                       "Content-Type": "application/json",
+                      "Accept" : "application/json",
+                   },
+                   body: JSON.stringify(formData)
+              })
+               .then(response => response.json()) // Convertir la réponse en JSON
+               .then(data => {
+                   if (data.success) {
+                       // Suppression réussie : mettre à jour l'interface utilisateur
+                       Swal.fire({
+                           position:"top-end",
+                           title: "Mesajınız başarıyla Gönderildi!",
+                           text: data.message,
+                           icon: "success",
+                           timer: 1500
+                       });
+                       // Resetting my form areas
+                       document.getElementById('formulaire').reset();
+                   } else {
+                       // Suppression échouée : afficher un message d'erreur
+                       Swal.fire({
+                           position:"top-end",
+                           title: "İşlem Başarısız!",
+                           text: data.message,
+                           icon: "error",
+                           showConfirmButton: true,
+                           timer: 3000
+                       });
+                   }
+               })
+               .catch(error => {
+                   // Erreur réseau ou autre : afficher un message d'erreur
+                   console.error('Bir hata oluştu',error);
+                   Swal.fire({
+                       position:"top-end",
+                       title: "Error!",
+                       text: "Bir hata oluştu.",
+                       icon: "error",
+                       showConfirmButton: true,
+                       timer:1500
+                   });
+               });
+     });
+     function send(){
+             Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.href="Default/Contact"
+      }
+    });
+     }
+</script>

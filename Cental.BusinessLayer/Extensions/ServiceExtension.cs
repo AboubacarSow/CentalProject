@@ -25,6 +25,9 @@ namespace Cental.BusinessLayer.Extensions
             
             services.AddScoped<IUserSocialService, UserSocialManager>();
             services.AddScoped<IUserSocialDal, EfUserSocial>();
+
+            services.AddScoped<IMessageService, MessageManager>();
+            services.AddScoped<IMessageDal, EfMessageDal>();
             
             services.AddScoped(typeof(IGenericDal<>), typeof(GenericRepository<>));
             services.AddScoped(typeof(IGenericService<>), typeof(GenericManager<>));

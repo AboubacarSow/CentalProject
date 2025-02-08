@@ -27,5 +27,9 @@ namespace Cental.DataAccesLayer.Context
         public DbSet<Service> Services { get; set; }
         public DbSet<Testimonial> Testimonials { get; set; }  
         public DbSet<MSocialMedia> MSocialMedias { get; set; }  
+        public DbSet<CentalSocialPage> CentalSocialPages { get; set; }  
+        public DbSet<Branch> Branches { get; set; }  
+        public DbSet<Contact> Contacts{ get; set; }  
+        public DbSet<Message> Messages{ get; set; }  
     }
 }

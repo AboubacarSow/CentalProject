@@ -73,10 +73,10 @@ namespace Cental.WebUI
 
             app.MapControllerRoute(
                   name: "areas",
-                  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                  pattern: "{area:exists}/{controller=Profile}/{action=Index}/{id?}");
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Default}/{action=Index}/{id?}");
             app.Run();
         }
     }
