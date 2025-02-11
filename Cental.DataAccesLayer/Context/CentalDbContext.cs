@@ -14,7 +14,7 @@ namespace Cental.DataAccesLayer.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("server=localhost\\SQLEXPRESS01; Database=CentalDb;trustServerCertificate=true; Trusted_Connection=true;");
+            optionsBuilder.UseSqlServer("DefaultConnection");
             optionsBuilder.UseLazyLoadingProxies();
         }
         public DbSet<About> Abouts { get; set; }

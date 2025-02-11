@@ -13,6 +13,7 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
 namespace Cental.WebUI
@@ -24,7 +25,15 @@ namespace Cental.WebUI
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddDbContext<CentalDbContext>();
+
+
+            //builder.Services.AddDbContext<CentalDbContext>(options =>
+            //options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+
+            //The best
+            builder.Services.AddDbContext<CentalDbContext>();   
+
             builder.Services.AddIdentity<AppUser,AppRole>(option =>
             {
                 option.User.RequireUniqueEmail = true;
