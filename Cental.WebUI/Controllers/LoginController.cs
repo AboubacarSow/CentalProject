@@ -10,10 +10,12 @@ namespace Cental.WebUI.Controllers
 	public class LoginController : Controller
 	{
 		private readonly SignInManager<AppUser> _signManager;
+		private readonly UserManager<AppUser> _userManager;
 
-		public LoginController(SignInManager<AppUser> signManager)
+		public LoginController(SignInManager<AppUser> signManager,UserManager<AppUser> userManager)
 		{
 			_signManager = signManager;
+			_userManager = userManager;
 		}
 
 		public async Task<IActionResult> Index()
@@ -34,7 +36,24 @@ namespace Cental.WebUI.Controllers
 			{
 				return Redirect(returnUrl);
 			}	
-			return RedirectToAction("Index","About");
+			var user=await _userManager.FindByNameAsync(userDto.UserName);
+			var userRoles = await _userManager.GetRolesAsync(user);
+			
+			foreach (var role in userRoles) 
+			{
+                var redirectAction = role switch
+                {
+                    "Admin" => RedirectToAction("Index", "AdminAbout"),
+                    "Manager" => RedirectToAction("Index", "MySocial", new { area = "Manager" }),
+                    "User" => RedirectToAction("Index", "MyProfile", new { area = "User" }),
+                    _ => null
+                };
+
+				if(redirectAction != null)
+					return redirectAction;	
+               
+			}
+			return RedirectToAction("Index", "Default");
 		}
 
 		public async Task<IActionResult> Logout()

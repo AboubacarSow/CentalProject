@@ -1,4 +1,4 @@
-﻿@model List<ResultUserDto>
+﻿@model List<AppUser>
 @*
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
@@ -22,10 +22,12 @@
                         <h4>@(string.Concat(user.FirstName," ",user.LastName)) </h4>
                         <p>Manager</p>
                         <div class="team-icon d-flex justify-content-center">
-                            <a class="btn btn-square btn-light rounded-circle mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-square btn-light rounded-circle mx-1" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-square btn-light rounded-circle mx-1" href=""><i class="fab fa-instagram"></i></a>
-                            <a class="btn btn-square btn-light rounded-circle mx-1" href=""><i class="fab fa-linkedin-in"></i></a>
+                            @foreach(var social in user.SocialMedias)
+                            {
+                            <a class="btn btn-square btn-light rounded-circle mx-1" href="@social.Url"><i class="@social.Icon"></i></a>
+
+                            }
+                            
                         </div>
                     </div>
                 </div>

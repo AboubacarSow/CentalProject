@@ -1,21 +1,19 @@
 ﻿using Cental.EntityLayer.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Cental.DataAccesLayer.Context
 {
     public class CentalDbContext : IdentityDbContext<AppUser,AppRole,int>
     {
+        public CentalDbContext(DbContextOptions<CentalDbContext> options) : base(options)
+        {
+
+        }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("DefaultConnection");
-            optionsBuilder.UseLazyLoadingProxies();
+            if(!optionsBuilder.IsConfigured)
+                optionsBuilder.UseLazyLoadingProxies();   
         }
         public DbSet<About> Abouts { get; set; }
         public DbSet<Banner> Banners { get; set; }

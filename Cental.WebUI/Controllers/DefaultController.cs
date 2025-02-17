@@ -16,8 +16,6 @@ namespace Cental.WebUI.Controllers
     {
         public IActionResult Index()
         {
-            
-
             return View();
         }
         public IActionResult Contact()

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Cental.DtoLayer.UserDtos;
 
 namespace Cental.DtoLayer.UserSocialDtos
 {
@@ -12,5 +8,6 @@ namespace Cental.DtoLayer.UserSocialDtos
         public string Name { get; set; }
         public string Url { get; set; }
         public string Icon { get; set; }
+        public virtual ResultUserDto ResultUserDto { get; set; }
     }
 }

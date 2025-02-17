@@ -1,13 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Cental.BusinessLayer.Validators.ErrorDescriber
 {
-	public class CustumErrorDescriber : IdentityErrorDescriber
+    public class CustumErrorDescriber : IdentityErrorDescriber
 	{
 		public override IdentityError PasswordRequiresLower()
 		{
