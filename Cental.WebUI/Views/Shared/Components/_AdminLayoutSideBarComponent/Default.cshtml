@@ -29,10 +29,10 @@
 					<label>Menü</label>
 				</li>
 				<li class="nav-item">
-					<a href="index.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
+					<a asp-action="Index" asp-controller="AdminDashboard"class="nav-link "><span class="pcoded-micon"><i class="feather icon-activity"></i></span><span class="pcoded-mtext">Dashboard</span></a>
 				</li>
 				<li class="nav-item">
-					<a asp-action="Index" asp-controller="About" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span>
+					<a asp-action="Index" asp-controller="About" class="nav-link "><span class="pcoded-micon"><i class="feather icon-user"></i></span>
 						<span class="pcoded-mtext">Hakkımızda</span></a>
 				</li>
 				<li class="nav-item">
@@ -40,12 +40,24 @@
 						<span class="pcoded-mtext">Öne Çıkan Alanı</span></a>
 				</li>
 				<li class="nav-item">
-					<a asp-action="Index" asp-controller="Brand " class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span>
+					<a asp-action="Index" asp-controller="Brand" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span>
 						<span class="pcoded-mtext">Markalar</span></a>
 				</li>
 				<li class="nav-item">
 					<a asp-action="Index" asp-controller="Car" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span>
 						<span class="pcoded-mtext">Arabalar</span></a>
+				</li>
+				<li class="nav-item">
+					<a asp-action="Index" asp-controller="AdminMessage" class="nav-link "><span class="pcoded-micon"><i class="feather icon-mail"></i></span>
+						<span class="pcoded-mtext">Mesajlar</span></a>
+				</li>
+				<li class="nav-item">
+					<a asp-action="Index" asp-controller="AdminBranch" class="nav-link "><span class="pcoded-micon"><i class="feather icon-map" ></i></span>
+						<span class="pcoded-mtext">Şubeler</span></a>
+				</li>
+				<li class="nav-item">
+					<a asp-action="Index" asp-controller="AdminSocialPage" class="nav-link "><span class="pcoded-micon"><i class="feather icon-flag" ></i></span>
+						<span class="pcoded-mtext">Sosyal Sayfalar</span></a>
 				</li>
 				
 

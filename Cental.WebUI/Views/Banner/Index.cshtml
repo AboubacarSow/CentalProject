@@ -3,7 +3,9 @@
     ViewData["Title"] = "Öne Çıkan Alanı";
     Layout = "~/Views/AdminLayout/Layout.cshtml";
 }
-
+<div class="container">
+    <a asp-action="Create" asp-controller="Banner" class="btn btn-primary flex-end"> <i class="fa fa-plus me-2"></i> Ekle</a>
+</div>
 <table class="table table-bordered">
     <tr>
         <th>#</th>
@@ -19,12 +21,12 @@
             <td>@item.BannerId</td>
             <td>@item.Title</td>
             <td>@item.Description</td>
-            <td> <img src="@item.ImageUrl" style="width:100px; height:100px; border-radius:50%" /> </td>
+            <td><img src="@item.ImageUrl" style="width:100px; height:100px; border-radius:50%"/></td>
             <td><a asp-action="Delete" asp-route-id="@item.BannerId" class="btn btn-danger"> <i class="fa fa-trash me-2"></i> Sil</a> </td>
             <td><a asp-action="Update" asp-route-id="@item.BannerId" class="btn btn-success"><i class="fa fa-pen me-2"></i> Güncelle</a> </td>
         </tr>
     }
 </table>
-<a asp-action="Create" asp-controller="Banner" class="btn btn-primary"> <i class="fa fa-plus me-2"></i> Ekle</a>
+
 
 

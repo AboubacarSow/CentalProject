@@ -18,6 +18,7 @@ namespace Cental.WebUI.Controllers
         {
             return View();
         }
+        //Iletişim
         public IActionResult Contact()
         {
             return View();

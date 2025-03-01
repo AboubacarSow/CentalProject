@@ -1,0 +1,17 @@
+﻿@model UpdateBranchDto
+@{
+    ViewData["Title"] = "Şube Güncelleme";
+    Layout = "~/Views/AdminLayout/Layout.cshtml";
+}
+
+<form method="post">
+    <input type="hidden" asp-for="@Model.Id" />
+    <label class="form-label">Adres</label>
+    <input type="text" class="form-control" asp-for="@Model.Adress" /><br />
+    <label class="form-label">Telefon Numara</label>
+    <input type="text" class="form-control" asp-for="@Model.PhoneNumber" />
+    <br />
+    <button class="btn btn-primary" type="submit"><i class="fa fa-pen me-2"></i> Güncelle</button>
+</form>
+
+

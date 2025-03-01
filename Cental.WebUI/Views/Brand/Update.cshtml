@@ -1,14 +1,17 @@
-﻿@model CreateBrandDto
+﻿@model UpdateBrandDto
 @{
-    ViewData["Title"] = "Marka Ekleme";
+    ViewData["Title"] = "Marka Güncelleme";
     Layout = "~/Views/AdminLayout/Layout.cshtml";
 }
 
+<h6>@Html.ValidationSummary()</h6>
 <form method="post">
+    <input type="hidden" asp-for="@Model.BrandId" />
     <label class="form-label">Marka Adı</label>
     <input asp-for="BrandName" class="form-control" />
     <span asp-validation-for="BrandName" class="text-danger"></span>
     <br />
     <br />
-    <button class="btn btn-outline-primary"><i class="fa fa-save me-2"></i> Kaydet</button>
+    <button class="btn btn-outline-primary"><i class="fa fa-save me-2"></i> Güncelle</button>
 </form>
+

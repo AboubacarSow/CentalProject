@@ -29,6 +29,12 @@ namespace Cental.BusinessLayer.Extensions
             services.AddScoped<IMessageService, MessageManager>();
             services.AddScoped<IMessageDal, EfMessageDal>();
             
+            services.AddScoped<IBranchDal, EfBranchDal>();
+            services.AddScoped<IBranchService, BranchManager>();
+            
+            services.AddScoped<ICentalSocialPageDal, EfCentalSocialPageDal>();
+            services.AddScoped<ICentalSocialPageService, CentalSocialPageManager>();
+            
             services.AddScoped(typeof(IGenericDal<>), typeof(GenericRepository<>));
             services.AddScoped(typeof(IGenericService<>), typeof(GenericManager<>));
 

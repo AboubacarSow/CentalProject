@@ -1,0 +1,35 @@
+﻿@model List<ResultSocialPageDto>
+@{
+    ViewData["Title"] = "Cental Sosyal Medya Sayfaları";
+    Layout = "~/Views/AdminLayout/Layout.cshtml";
+    int count = 0;
+}
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>N°</th>
+            <th>Sayfa İsmi</th>
+            <th>İkonu</th>
+            <th>Sil</th>
+            <th>Güncelle</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+            count++;
+            <tr>
+                <th>@count</th>
+                <td>@item.Name</td>
+                <td class="text-center"><a href="@item.Url" target="_blank"><i class="feather icon-@item.Name.ToLower()"></i></a></td>
+                <td><a asp-action="Delete" asp-controller="AdminSocialPage" asp-route-id="@item.Id" class="btn btn-danger">
+                    <i class="fa fa-tash"></i> Sil</a></td>
+                <td><a asp-action="Update" asp-controller="AdminSocialPage" asp-route-id="@item.Id" class="btn btn-info">
+                    <i class="fa fa-pen"></i>Güncelle</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-action="Create" asp-controller="AdminSocialPage" class="btn btn-primary"><i class="fa fa-plus-circle"></i>Eke</a>
+

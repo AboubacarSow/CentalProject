@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Cental.BusinessLayer.Abstract;
-using Cental.DataAccesLayer.Abstract;
 using Cental.DtoLayer.BrandDtos;
 using Cental.EntityLayer.Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -9,22 +8,22 @@ namespace Cental.WebUI.Controllers
 {
     public class BrandController : Controller
     {
-        private readonly IBrandService _brandManager;
+        private readonly IBrandService _brandService;
         private readonly IMapper _mapper;
 
         public BrandController(IBrandService brandManager, IMapper mapper)
         {
-            _brandManager = brandManager;
+            _brandService = brandManager;
             _mapper = mapper;
         }
 
         public IActionResult Index()
         {
-            return View(_brandManager.TGetAll());
+            return View(_brandService.TGetAll());
         }
         public IActionResult Delete(int id)
         {
-            _brandManager.TDelete(id);
+            _brandService.TDelete(id);
             return RedirectToAction("Index");
         }
         [HttpGet]
@@ -36,12 +35,26 @@ namespace Cental.WebUI.Controllers
         public IActionResult Create(CreateBrandDto brandDto)
         {
             //We will Change Brand to CreateBrandDto
-            if(!ModelState.IsValid)
-            {
-                return View(brandDto);
-            }
+            if(!ModelState.IsValid) return View(brandDto);
+
             var brand=_mapper.Map<Brand>(brandDto);
-            _brandManager.TCreate(brand);
+            _brandService.TCreate(brand);
+            return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public IActionResult Update([FromRoute] int id)
+        {
+            var brandDto = _mapper.Map<UpdateBrandDto>
+                (_brandService.TGetById(id));
+            return View(brandDto);
+        }
+
+        [HttpPost]
+        public IActionResult Update(UpdateBrandDto brandDto)
+        {
+            if (!ModelState.IsValid) return View(brandDto);      
+            var brand = _mapper.Map<Brand>(brandDto);
+            _brandService.TUpdate(brand);
             return RedirectToAction("Index");
         }
     }

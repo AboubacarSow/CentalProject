@@ -1,0 +1,19 @@
+﻿@model UpdateSocialPageDto
+@{
+    ViewData["Title"] = "Cental Sosyal Medya Sayfa Güncelleme";
+    Layout = "~/Views/AdminLayout/Layout.cshtml";
+}
+
+
+<form method="post">
+    <input type="hidden" asp-for="@Model.Id" />
+    <label class="form-label">Sayfa Adı</label>
+    <input type="text" asp-for="@Model.Name" class="form-control" /> <br />
+    <label class="form-label">Sayfa ikonu</label>
+    <input type="text" asp-for="@Model.Icon" class="form-control" /> <br />
+    <label class="form-label"> Sayfa Url Adresi</label>
+    <input class="form-control" type="text" asp-for="@Model.Url" /> <br />
+    <button class="btn btn-success" type="submit"><i class="fa fa-pen me-2"></i>Güncelle</button>
+</form>
+
+

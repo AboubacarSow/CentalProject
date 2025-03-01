@@ -1,0 +1,72 @@
+﻿@model List<ResultMessageDto>
+@{
+    ViewData["Title"] = "Gelen Mesajlar";
+    Layout = "~/Views/AdminLayout/Layout.cshtml";
+    int count = 0;
+}
+
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>N°</th>
+            <th>Gönderen Tam Adı</th>
+            <th>Mail Adresi</th>
+            <th>Konu</th>
+            <th>Mesajin İçeriği</th>
+            <th>Okunma Durumu</th>
+            <th>Sil</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach(var mes in Model)
+        {
+            count++;
+            <tr>
+                <th>@count</th>
+                <td>@mes.FullName</td>
+                <td>@mes.Email</td>
+                <td>@mes.Subject</td>
+                <td>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#message-@mes.Id">
+                        <i class="fa fa-book-reader"></i>
+                    </button>
+                </td>
+                <td>
+                    @if (mes.IsRead)
+                    {
+                        <span class="btn btn-info">Okundu</span>
+                    }
+                    else
+                    {
+                        <span class="btn btn-warning">Henüz Okunmadı</span>
+                    }
+                </td>
+                <td><a asp-action="Delete" asp-controller="AdminMessage" asp-route-id="@mes.Id" class="btn btn-danger">Sil</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@foreach(var item in Model)
+{
+    <div class="modal fade" id="message-@item.Id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">@item.FullName</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>@item.Body</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                    <a asp-action="SetAsRead" asp-controller="AdminMessage" asp-route-id="@item.Id" class="btn btn-warning">Okundu İşaretle</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

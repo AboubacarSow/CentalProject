@@ -5,9 +5,9 @@ using Cental.EntityLayer.Entities;
 
 namespace Cental.DataAccesLayer.Concret
 {
-    public class EfBrandDal : GenericRepository<Brand>, IBrandDal
+    public class EfBranchDal : GenericRepository<Branch>, IBranchDal
     {
-        public EfBrandDal(CentalDbContext context) : base(context)
+        public EfBranchDal(CentalDbContext context) : base(context)
         {
         }
     }
