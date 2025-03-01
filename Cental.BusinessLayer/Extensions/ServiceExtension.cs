@@ -34,6 +34,9 @@ namespace Cental.BusinessLayer.Extensions
             
             services.AddScoped<ICentalSocialPageDal, EfCentalSocialPageDal>();
             services.AddScoped<ICentalSocialPageService, CentalSocialPageManager>();
+
+            services.AddScoped<IContactDal, EfContactDal>();
+            services.AddScoped<IContactService, ContactManager>();
             
             services.AddScoped(typeof(IGenericDal<>), typeof(GenericRepository<>));
             services.AddScoped(typeof(IGenericService<>), typeof(GenericManager<>));

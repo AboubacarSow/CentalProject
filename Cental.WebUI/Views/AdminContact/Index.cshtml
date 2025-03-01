@@ -1,0 +1,49 @@
+﻿@model List<ResultContactDto>
+@{
+    ViewData["Title"] = "İletişim Bilgeleri";
+    Layout = "~/Views/AdminLayout/Layout.cshtml";
+    int count = 0;
+}
+
+
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>N°</th>
+            <th>Adresi</th>
+            <th>Mail</th>
+            <th>Telefon</th>
+            <th>Sil</th>
+            <th>Güncelle</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var contact in Model)
+        {
+            count++;
+            <tr>
+                <th>@count</th>
+                <td>@contact.Address</td>
+                <td>@contact.Email</td>
+                <td>@contact.Phone</td>
+                <td>
+                    <a asp-action="Delete" asp-controller="AdminContact" asp-route-id="@contact.Id" class="btn btn-danger">
+                        <i class="fa fa-trash"></i>
+                        Sil
+                    </a>
+                </td>
+                <td>
+                    <a asp-action="Update" asp-controller="AdminContact" asp-route-id="@contact.Id" class="btn btn-success">
+                        <i class="fa fa-pen"></i>
+                        Güncelle
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Create" asp-controller="AdminContact" class="btn btn-primary"> <i class="fa fa-plus-circle me-2"></i>Ekle</a>
+
+
