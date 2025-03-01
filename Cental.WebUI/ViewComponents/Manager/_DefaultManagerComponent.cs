@@ -14,9 +14,12 @@ namespace Cental.WebUI.ViewComponents.Manager
         {
 
             var users = await _userManager.GetUsersInRoleAsync("Manager");
-           // var userDtos = _mapper.Map<List<ResultUserDto>>(users);
-            
-            return View(users);
+            var userDtos = _mapper.Map<List<ResultUserDto>>(users);
+            foreach (var user in userDtos)
+            {
+                Console.WriteLine($"User: {user.FirstName} {user.LastName}, Social Count: {user.SocialMedias?.Count}");
+            }
+            return View(userDtos);
         }
     }
 }

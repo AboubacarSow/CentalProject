@@ -12,8 +12,7 @@ namespace Cental.DataAccesLayer.Context
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if(!optionsBuilder.IsConfigured)
-                optionsBuilder.UseLazyLoadingProxies();   
+             optionsBuilder.UseLazyLoadingProxies();   
         }
         public DbSet<About> Abouts { get; set; }
         public DbSet<Banner> Banners { get; set; }

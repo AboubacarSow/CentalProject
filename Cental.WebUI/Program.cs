@@ -1,17 +1,10 @@
-using Cental.BusinessLayer.Abstract;
-using Cental.BusinessLayer.Concrete;
 using Cental.BusinessLayer.Extensions;
 using Cental.BusinessLayer.Validators;
-using Cental.BusinessLayer.Validators.BrandDtosValidation;
 using Cental.BusinessLayer.Validators.ErrorDescriber;
-using Cental.DataAccesLayer.Abstract;
-using Cental.DataAccesLayer.Concret;
 using Cental.DataAccesLayer.Context;
-using Cental.DataAccesLayer.Repositories;
 using Cental.EntityLayer.Entities;
 using FluentValidation;
 using FluentValidation.AspNetCore;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;

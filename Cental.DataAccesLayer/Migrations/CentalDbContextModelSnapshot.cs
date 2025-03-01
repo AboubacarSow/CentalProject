@@ -86,7 +86,7 @@ namespace Cental.DataAccesLayer.Migrations
 
                     b.HasKey("AboutId");
 
-                    b.ToTable("Abouts");
+                    b.ToTable("Abouts", (string)null);
                 });
 
             modelBuilder.Entity("Cental.EntityLayer.Entities.AppRole", b =>
@@ -219,7 +219,7 @@ namespace Cental.DataAccesLayer.Migrations
 
                     b.HasKey("BannerId");
 
-                    b.ToTable("Banners");
+                    b.ToTable("Banners", (string)null);
                 });
 
             modelBuilder.Entity("Cental.EntityLayer.Entities.Branch", b =>
@@ -240,7 +240,7 @@ namespace Cental.DataAccesLayer.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Branches");
+                    b.ToTable("Branches", (string)null);
                 });
 
             modelBuilder.Entity("Cental.EntityLayer.Entities.Brand", b =>
@@ -256,7 +256,7 @@ namespace Cental.DataAccesLayer.Migrations
 
                     b.HasKey("BrandId");
 
-                    b.ToTable("Brands");
+                    b.ToTable("Brands", (string)null);
                 });
 
             modelBuilder.Entity("Cental.EntityLayer.Entities.Car", b =>
@@ -306,7 +306,7 @@ namespace Cental.DataAccesLayer.Migrations
 
                     b.HasIndex("BrandId");
 
-                    b.ToTable("Cars");
+                    b.ToTable("Cars", (string)null);
                 });
 
             modelBuilder.Entity("Cental.EntityLayer.Entities.CentalSocialPage", b =>
@@ -331,7 +331,7 @@ namespace Cental.DataAccesLayer.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CentalSocialPages");
+                    b.ToTable("CentalSocialPages", (string)null);
                 });
 
             modelBuilder.Entity("Cental.EntityLayer.Entities.Contact", b =>
@@ -356,7 +356,7 @@ namespace Cental.DataAccesLayer.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Contacts");
+                    b.ToTable("Contacts", (string)null);
                 });
 
             modelBuilder.Entity("Cental.EntityLayer.Entities.Feature", b =>
@@ -381,7 +381,7 @@ namespace Cental.DataAccesLayer.Migrations
 
                     b.HasKey("FeatureId");
 
-                    b.ToTable("Features");
+                    b.ToTable("Features", (string)null);
                 });
 
             modelBuilder.Entity("Cental.EntityLayer.Entities.MSocialMedia", b =>
@@ -411,7 +411,7 @@ namespace Cental.DataAccesLayer.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("MSocialMedias");
+                    b.ToTable("MSocialMedias", (string)null);
                 });
 
             modelBuilder.Entity("Cental.EntityLayer.Entities.Message", b =>
@@ -443,7 +443,7 @@ namespace Cental.DataAccesLayer.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Messages");
+                    b.ToTable("Messages", (string)null);
                 });
 
             modelBuilder.Entity("Cental.EntityLayer.Entities.Process", b =>
@@ -464,7 +464,7 @@ namespace Cental.DataAccesLayer.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Processes");
+                    b.ToTable("Processes", (string)null);
                 });
 
             modelBuilder.Entity("Cental.EntityLayer.Entities.Review", b =>
@@ -485,7 +485,7 @@ namespace Cental.DataAccesLayer.Migrations
 
                     b.HasIndex("CarId");
 
-                    b.ToTable("Reviews");
+                    b.ToTable("Reviews", (string)null);
                 });
 
             modelBuilder.Entity("Cental.EntityLayer.Entities.Service", b =>
@@ -510,7 +510,7 @@ namespace Cental.DataAccesLayer.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Services");
+                    b.ToTable("Services", (string)null);
                 });
 
             modelBuilder.Entity("Cental.EntityLayer.Entities.Testimonial", b =>
@@ -542,7 +542,7 @@ namespace Cental.DataAccesLayer.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Testimonials");
+                    b.ToTable("Testimonials", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>

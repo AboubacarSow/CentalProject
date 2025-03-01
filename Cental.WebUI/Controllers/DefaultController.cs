@@ -38,20 +38,27 @@ namespace Cental.WebUI.Controllers
         }
         public IActionResult Cars()
         {
-            var values = _carManager.TGetAll();
-            if (TempData["FilteredCars"] is not null)
+
+            if (TempData["filterCars"] != null)
             {
-                var data = TempData["FilteredCars"].ToString();
-                if (data is not null)
+                var data = TempData["filterCars"].ToString();
+                if (data != null)
                 {
-                    values = JsonSerializer.Deserialize<List<Car>>(data, new JsonSerializerOptions
+
+                    var filterCars = JsonSerializer.Deserialize<List<Car>>(data, new JsonSerializerOptions
                     {
                         ReferenceHandler = ReferenceHandler.IgnoreCycles
                     });
-                     return View(values);
+
+
+
+                    return View(filterCars);
+
                 }
             }
-            return View(values);  
+
+            var values = _carManager.TGetAll();
+            return View(values); ;  
         }
         [HttpPost]
         public IActionResult FilterCars(string brand,string gear,string gas, int year)
@@ -66,8 +73,8 @@ namespace Cental.WebUI.Controllers
             if(year>0)
                 values=values.Where(g=>g.Year>=year);
 
-     
-            TempData["FilteredCars"] = JsonSerializer.Serialize(values.ToList(), new JsonSerializerOptions
+            var filteredcars = values.ToList();
+            TempData["filterCars"] = JsonSerializer.Serialize(filteredcars, new JsonSerializerOptions
             {
                 ReferenceHandler = ReferenceHandler.IgnoreCycles
             });
