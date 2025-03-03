@@ -63,6 +63,29 @@ namespace Cental.WebUI.Controllers
             _reviewService.TCreate(review);
             return RedirectToAction("Index");
         }
+        [HttpGet]
+        public IActionResult Update([FromRoute]int id)
+        {
+            GetCars();
+            var review = _reviewService.TGetById(id);
+            var reviewDto = _mapper.Map<UpdateReviewDto>(review);
+            return View(reviewDto);
+        }
+        [HttpPost]
+        public IActionResult Update(UpdateReviewDto reviewDto)
+        {
+            var car = _carService.TGetCarById(reviewDto.CarId, false);
+            reviewDto.ResultCarDto = _mapper.Map<ResultListCarDto>(car);
+            if (!ModelState.IsValid)
+            {
+                GetCars();
+                return View(reviewDto);
+            }
+            var review = _mapper.Map<Review>(reviewDto);
+            _reviewService.TUpdate(review);
+            return RedirectToAction("Index");
+
+        }
 
 
 

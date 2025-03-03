@@ -1,0 +1,17 @@
+﻿@model UpdateReviewDto
+@{
+    ViewData["Title"] = "Not Güncelleme";
+    Layout = "~/Views/AdminLayout/Layout.cshtml";
+}
+
+<h5>@Html.ValidationSummary()</h5>
+<form method="post">
+    <input type="hidden" asp-for="@Model.Id" />
+    <label class="form-label">Rating</label>
+    <input type="number" asp-for="@Model.Rating" class="form-control" /><br />
+    <label class="form-label">Araba</label>
+    @Html.DropDownListFor(x => x.CarId, (List<SelectListItem>)ViewBag.Cars, "Bir araba seçin", new { @class = "form-control" }) <br />
+
+    <button type="submit" class="btn btn-primary"> <i class="fa fa-pen me-2"></i>Güncelle</button>
+</form>
+
