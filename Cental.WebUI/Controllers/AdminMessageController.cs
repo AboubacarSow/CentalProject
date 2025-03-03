@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using Cental.BusinessLayer.Abstract;
 using Cental.DtoLayer.MessageDtos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cental.WebUI.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminMessageController : Controller
     {
         private readonly IMessageService _messageService;

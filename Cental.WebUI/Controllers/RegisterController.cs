@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Cental.WebUI.Controllers
 {
+    //This controller belongs to both of our users: Admin, Manager, User
     [AllowAnonymous]
     public class RegisterController : Controller
     {

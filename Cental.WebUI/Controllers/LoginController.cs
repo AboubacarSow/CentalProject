@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Cental.WebUI.Controllers
 {
+	//This controller belongs to our three types of user:Admin, Manager, User
 	[AllowAnonymous]
 	public class LoginController : Controller
 	{

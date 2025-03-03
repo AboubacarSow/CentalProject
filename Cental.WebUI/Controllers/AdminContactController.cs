@@ -2,10 +2,12 @@
 using Cental.BusinessLayer.Abstract;
 using Cental.DtoLayer.ContactDtos;
 using Cental.EntityLayer.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cental.WebUI.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminContactController : Controller
     {
         private readonly IContactService _contactService;

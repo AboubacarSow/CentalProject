@@ -2,10 +2,12 @@
 using Cental.BusinessLayer.Abstract;
 using Cental.DtoLayer.BranchDtos;
 using Cental.EntityLayer.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cental.WebUI.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminBranchController : Controller
     {
         private readonly IBranchService _branchService;
