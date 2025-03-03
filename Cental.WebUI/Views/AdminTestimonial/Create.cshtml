@@ -1,0 +1,27 @@
+﻿@model CreateTestimonialDto
+@{
+    ViewData["Title"] = "Testimonial Ekleme";
+    Layout = "~/Views/AdminLayout/Layout.cshtml";
+}
+
+<h6>@Html.ValidationSummary()</h6>
+<form method="post">
+    <label class="form-label">Ad Soyad</label>
+    <input type="text" class="form-control" asp-for="@Model.FullName" /><br />
+
+    <label class="form-label">Başlık</label>
+    <input type="text" class="form-control" asp-for="@Model.Title" /><br />
+
+    <label class="form-label">Açıklama</label>
+    <textarea type="text" class="form-control" asp-for="@Model.Comment"></textarea>
+    <br />
+    <label class="form-label">Resim</label>
+    <input type="text" class="form-control" asp-for="@Model.UrlImage" placeholder="Resim yolunu giriniz" />
+    <br />
+    <label class="form-label">Puan</label>
+    <input type="text" class="form-control" asp-for="@Model.Review" placeholder="Kaç Puan?" />
+    <br />
+    <button class="btn btn-primary" type="submit"><i class="fa fa-plus-circle"></i> Kaydet</button>
+</form>
+
+

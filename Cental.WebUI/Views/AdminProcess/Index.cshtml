@@ -1,0 +1,45 @@
+﻿@model List<ResultProcessDto>
+@{
+    ViewData["Title"] = "Sureçler";
+    Layout = "~/Views/AdminLayout/Layout.cshtml";
+    int count = 0;
+}
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>N°</th>
+            <th>Basşlık</th>
+            <th>Açıklama</th>
+            <th>Sil</th>
+            <th>Güncelle</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var process in Model)
+        {
+            count++;
+            <tr>
+                <th>@count</th>
+                <td>@process.Title</td>
+                <td>@process.Description</td>
+                <td>
+                    <a asp-action="Delete" asp-controller="AdminProcess" asp-route-id="@process.Id" class="btn btn-danger">
+                        <i class="fa fa-trash"></i>
+                        Sil
+                    </a>
+                </td>
+                <td>
+                    <a asp-action="Update" asp-controller="AdminProcess" asp-route-id="@process.Id" class="btn btn-success">
+                        <i class="fa fa-pen"></i>
+                        Güncelle
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Create" asp-controller="AdminProcess" class="btn btn-primary"> <i class="fa fa-plus-circle me-2"></i>Ekle</a>
+
+

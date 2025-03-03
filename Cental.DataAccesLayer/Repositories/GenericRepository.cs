@@ -14,7 +14,8 @@ namespace Cental.DataAccesLayer.Repositories
 
         public void Create(T entity)
         {
-           _context.Add(entity);
+         
+            _context.Add(entity);
             _context.SaveChanges();
         }
 

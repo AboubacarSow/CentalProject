@@ -10,7 +10,7 @@ namespace Cental.WebUI.Mapping
         {
             CreateMap<Car, CreateCarDto>().ReverseMap();
             CreateMap<Car, UpdateCarDto>().ReverseMap();
-            CreateMap<Car, ResultListCarDto>();
+            CreateMap<Car, ResultListCarDto>().ReverseMap();
         }
     }
 }

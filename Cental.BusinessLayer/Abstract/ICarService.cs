@@ -10,5 +10,6 @@ namespace Cental.BusinessLayer.Abstract
     public interface ICarService : IGenericService<Car>
     {
        public List<Car> TGetCarsWithBrand();
+        Car TGetCarById(int id, bool trackChanges);
     }
 }

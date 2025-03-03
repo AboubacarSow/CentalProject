@@ -1,0 +1,78 @@
+﻿@model List<ResultTestimonialDto>
+@{
+    ViewData["Title"] = "Testimonial";
+    Layout = "~/Views/AdminLayout/Layout.cshtml";
+    int count = 0;
+}
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>N°</th>
+            <th>Ad Soyad</th>
+            <th>Başlık</th>
+            <th>Resim</th>
+            <th>Yorum</th>
+            <th>Puan</th>
+            <th>Sil</th>
+            <th>Güncelle</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var testimon in Model)
+        {
+            count++;
+            <tr>
+                <th>@count</th>
+                <td>@testimon.FullName</td>
+                <td>@testimon.Title</td>
+                <td><img src="@testimon.UrlImage"  style="width:100px;height:100px;border-radius:50%"/></td>
+                <td>
+                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#comment-@testimon.Id">
+                        Yorum
+                    </button>
+
+                </td>
+                <td>@testimon.Review</td>
+                <td>
+                    <a asp-action="Delete" asp-controller="AdminTestimonial" asp-route-id="@testimon.Id" class="btn btn-danger">
+                        <i class="fa fa-trash"></i>
+                        Sil
+                    </a>
+                </td>
+                <td>
+                    <a asp-action="Update" asp-controller="AdminTestimonial" asp-route-id="@testimon.Id" class="btn btn-success">
+                        <i class="fa fa-pen"></i>
+                        Güncelle
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Create" asp-controller="AdminTestimonial" class="btn btn-primary"> <i class="fa fa-plus-circle me-2"></i>Ekle</a>
+
+@foreach (var item in Model)
+{
+    <div class="modal fade" id="comment-@item.Id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">@item.FullName</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>@item.Comment</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kapat</button>
+                    <a asp-action="Update" asp-controller="AdminTestimonial" asp-route-id="@item.Id" class="btn btn-success">Güncelle</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+

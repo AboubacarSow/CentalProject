@@ -1,0 +1,42 @@
+﻿@model List<ResultReviewDto>
+@{
+    ViewData["Title"] = "Reviews";
+    Layout = "~/Views/AdminLayout/Layout.cshtml";
+    int count = 0;
+}
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>N°</th>
+            <th>Puan</th>
+            <th>Araba</th>
+            <th>Sil</th>
+            <th>Güncelleme</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+            count++;
+            <tr>
+                <th>@count</th>
+                <td><span class="btn btn-info">@item.Rating</span></td>
+                <td>@item.ResultCarDto.ModelName</td>
+                <td>
+                    <a asp-action="Delete" asp-controller="AdminReview" asp-route-id="@item.Id" class="btn btn-danger">
+                    <i class="fa fa-trash"></i>
+                    Sil</a>
+                </td>
+                <td><a asp-action="Update" asp-controller="AdminReview" asp-route-id="@item.Id" class="btn btn-success">
+                    <i class="fa fa-pen"></i>
+                    Güncelle</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-action="Create" asp-controller="AdminReview" class="btn btn-primary">
+    <i class="fa fa-plus-circle"></i>
+    Ekle
+</a>

@@ -1,0 +1,19 @@
+﻿@model CreateServiceDto
+@{
+    ViewData["Title"] = "Hizmet Ekleme";
+    Layout = "~/Views/AdminLayout/Layout.cshtml";
+}
+
+<h5>@Html.ValidationSummary()</h5>
+<form method="post">
+    <label class="form-label">Başlık</label>
+    <input type="text" class="form-control" asp-for="@Model.Title" /><br/>
+    <label class="form-label">Açıklama</label>
+    <textarea type="text" class="form-control" asp-for="@Model.Description"></textarea>
+    <br />
+    <label class="form-label">İkon</label>
+    <input type="text" class="form-control" asp-for="@Model.Icon"/>
+    <br/>
+    <button class="btn btn-primary" type="submit"><i class="fa fa-plus-circle"></i> Kaydet</button>
+</form>
+

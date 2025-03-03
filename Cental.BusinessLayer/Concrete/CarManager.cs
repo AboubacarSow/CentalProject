@@ -37,5 +37,10 @@ namespace Cental.BusinessLayer.Concrete
             return _carDal.GetAll();
         }
 
+        public Car? TGetCarById(int id, bool trackChanges)
+        {
+            return _carDal.GetById(id, trackChanges)
+                           .SingleOrDefault();
+        }
     }
 }
