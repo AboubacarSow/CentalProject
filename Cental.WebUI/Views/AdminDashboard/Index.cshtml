@@ -1,0 +1,199 @@
+﻿@model List<ResultListCarDto>
+@{
+	ViewData["Title"] = "Dashbord Analytiks";
+	Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	@await Component.InvokeAsync("_AdminLayoutHeadComponent")
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" 
+	integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body class="">
+	<!-- [ Pre-loader ] start -->
+	<div class="loader-bg">
+		<div class="loader-track">
+			<div class="loader-fill"></div>
+		</div>
+	</div>
+	<!-- [ Pre-loader ] End -->
+	<!-- [ navigation menu ] start -->
+	@await Component.InvokeAsync("_AdminLayoutSideBarComponent")
+	<!-- [ navigation menu ] end -->
+	<!-- [ Header ] start -->
+	@await Component.InvokeAsync("_AdminLayoutNavBarComponent")
+	<!-- [ Header ] end -->
+	<!-- [ Main Content ] start -->
+	<div class="pcoded-main-container">
+		<div class="pcoded-content">
+			<!-- [ breadcrumb ] start -->
+			<div class="page-header">
+				<div class="page-block">
+					<div class="row align-items-center">
+						<div class="col-md-12">
+							<div class="page-header-title">
+								<h5 class="m-b-10">@ViewData["Title"]</h5>
+							</div>
+							<ul class="breadcrumb">
+								<li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+								<li class="breadcrumb-item"><a href="#!">@ViewData["Title"]</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-6 col-xl-4">
+					<div class="card flat-card p-2 py-4">
+						<div class="row">
+							<div class="col-sm-4">
+								<div class="d-flex justify-content-center fs-1">
+									<i class="fa-solid fa-car mb-1 d-block text-primary"></i>
+								</div>
+							</div>
+							<div class="col-sm-8 text-md-center">
+								<h5 class="fs-4">@ViewBag.Brands</h5>
+								<span>Marka</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6 col-xl-4">
+					<div class="card flat-card p-2 py-4">
+						<div class="row">
+							<div class="col-sm-5">
+								<div class="d-flex justify-content-center fs-1">
+									<i class="fa-solid fa-code-branch mb-1 d-block text-c-green"></i>
+
+								</div>
+							</div>
+							<div class="col-sm-7 text-md-center">
+								<h5 class="fs-4">@ViewBag.Branches</h5>
+								<span>Şube</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6 col-xl-4 ">
+					<div class="card flat-card p-2 py-4">
+						<div class="row">
+							<div class="col-sm-4">
+								<div class="d-flex justify-content-center fs-1">
+									<i class="fa-solid fa-taxi text-c-yellow mb-1 d-block"></i>
+								</div>
+							</div>
+							<div class="col-sm-8 text-md-center">
+								<h5 class="fs-4">@ViewBag.Services</h5>
+								<span>Hizmet</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6 col-xl-4 ">
+					<div class="card flat-card p-2 py-4">
+						<div class="row">
+							<div class="col-sm-4">
+								<div class="d-flex justify-content-center fs-1">
+									<i class="icon feather icon-mail text-c-yellow mb-1 d-block"></i>
+								</div>
+							</div>
+							<div class="col-sm-8 text-md-center">
+								<h5 class="fs-4">@ViewBag.Emails</h5>
+								<span>Emails</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6 col-xl-4 ">
+					<div class="card flat-card p-2 py-4">
+						<div class="row">
+							<div class="col-sm-4">
+								<div class="d-flex justify-content-center fs-1">
+									<i class="feather icon-star-on"></i>
+								</div>
+							</div>
+							<div class="col-sm-8 text-md-center">
+								<h5 class="fs-4">@ViewBag.Rating +</h5>
+								<span>Rating</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6 col-xl-4 ">
+					<div class="card flat-card p-2 py-4">
+						<div class="row">
+							<div class="col-sm-4">
+								<div class="d-flex justify-content-center fs-1">
+									<i class="fa-solid fa-taxi text-c-yellow mb-1 d-block"></i>
+								</div>
+							</div>
+							<div class="col-sm-8 text-md-center">
+								<h5 class="fs-4">@ViewBag.Services</h5>
+								<span>Hizmet</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<div>
+				<div class="card">
+					<div class="card-header">
+						<h5>Son Altı Eklenen Arabalar </h5>
+					</div>
+					<div class="card-body table-border-style">
+						<div class="table-responsive">
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th>N°</th>
+										<th>Model Adı</th>
+										<th>Marka</th>
+										<th>Model Yılı</th>
+										<th>Kilometre</th>
+									</tr>
+								</thead>
+								<tbody>
+									@{
+										int count = 0;
+									}
+									@foreach (var car in Model)
+									{
+										count++;
+										<tr>
+											<td>@count</td>
+											<td>@car.ModelName</td>
+											<td>@car.Brand.BrandName</td>
+											<td>@car.Year</td>
+											<td>@car.Kilometer</td>
+											
+										</tr>
+									}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			@await Component.InvokeAsync("_LocationComponent")
+		</div>
+	</div>
+	
+	<!-- Required Js -->
+	<script src="~/flat-able-admin/dist/assets/js/vendor-all.min.js"></script>
+	<script src="~/flat-able-admin/dist/assets/js/plugins/bootstrap.min.js"></script>
+	<script src="~/flat-able-admin/dist/assets/js/pcoded.min.js"></script>
+	<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+	<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+﻿@model List<ResultListCarDto>
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<div>
+	<div class="card">
+		<div class="card-header">
+			<h5>Son Altı Eklenen Arabalar </h5>
+		</div>
+		<div class="card-body table-border-style">
+			<div class="table-responsive">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>N°</th>
+							<th>Model Adı</th>
+							<th>Marka</th>
+							<th>Model Yılı</th>
+							<th>Kilometre</th>
+						</tr>
+					</thead>
+					<tbody>
+						@{
+							int count = 0;
+						}
+						@foreach (var car in Model)
+						{
+							count++;
+							<tr>
+								<td>@count</td>
+								<td>@car.ModelName</td>
+								<td>@car.Brand.BrandName</td>
+								<td>@car.Year</td>
+								<td>@car.Kilometer</td>
+
+							</tr>
+						}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
