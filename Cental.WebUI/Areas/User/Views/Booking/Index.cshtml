@@ -1,7 +1,7 @@
 ﻿@model List<ResultBookingDto>
 @{
-    ViewData["Title"] = "Kiralama Paneli";
-    Layout = "~/Areas/Manager/Views/Layout/Index.cshtml";
+    ViewData["Title"] = "Kiralama Taleplerim";
+    Layout = "~/Areas/User/Views/UserLayout/Index.cshtml";
     int count = 0;
 }
 
@@ -19,7 +19,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var booking in Model)
+        @foreach(var booking in Model)
         {
             count++;
             <tr>
@@ -40,17 +40,10 @@
                     }
                 </td>
                 <td>
-                    @if (!booking.IsApproved)
-                    {
-                        <form method="post" id="formulaire">
-                            <input type="hidden" id="Bookingid" asp-for="@booking.BookingId" />
-                            <button class="btn btn-outline-danger" type="submit">Onayla</button>
-                        </form>
-                    }
-                    else
-                    {
-                        <span class="btn btn-outline-info">Onaylıdır</span>
-                    }
+                    <form method="post" id="formulaire">
+                        <input type="hidden" id="Bookingid" asp-for="@booking.BookingId" />
+                        <button class="btn btn-outline-danger" type="submit">Talebi İptal Et</button>
+                    </form>
                 </td>
             </tr>
         }
@@ -59,9 +52,10 @@
 </table>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    document.getElementById('Bookingid').addEventListener('submit', function(event){
-        event.preventDefault;
-        Swal.fire({
+     document.getElementById('formulaire').addEventListener('submit', function(event){
+          event.preventDefault();
+          
+            Swal.fire({
                 title: "Emin Mısınız?",
                 text: "Bu işlem geri Alamazsınız!",
                 icon: "warning",
@@ -69,18 +63,18 @@
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",
                 confirmButtonText: "Evet, İptal Et!"
-                }).then((result) => {
+            }).then((result) => {
                     if (result.isConfirmed) {
                         setcanceled();
                     }
                     return;
-        });
+            });
      });
-     const setApproved=function(){
+     const setcanceled=function(){
             let formData=document.getElementById('Bookingid').value;
-            let url=@Url.Action("Booking","SetAsApproved",new {area="Manager"});
+            let url="@Url.Action("CancelApplicaton","Booking",new {area="User"})";
             fetch(url,{
-                method:'Post',
+                method:'POST',
                 headers:{
                     'content-Type':'application/json',
                     'Accept':'application/json'
@@ -92,7 +86,7 @@
                 if(data.success){
                       Swal.fire({
                        position:"top-end",
-                       title: "Talebiniz başarıyla Onaylandı!",
+                       title: "Talebiniz başarıyla Iptal Edildi!",
                        text: data.message,
                        icon: "success",
                        timer: 1500
@@ -109,6 +103,8 @@
                     });
                 }
             })
-    });
-</script>
+     }
+  
 
+   
+</script>

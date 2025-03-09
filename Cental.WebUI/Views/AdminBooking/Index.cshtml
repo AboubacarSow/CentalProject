@@ -1,0 +1,48 @@
+﻿@model List<ResultBookingDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Layout.cshtml";
+    int count = 0;
+}
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>N°</th>
+            <th>Marka</th>
+            <th>Alma Yeri</th>
+            <th>Bırakma Yeri</th>
+            <th>Alma Tarih</th>
+            <th>Birakma Tarih</th>
+            <th>Kiralama Durumu</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var booking in Model)
+        {
+            count++;
+            <tr>
+                <th>@count</th>
+                <td>@booking.ModelName</td>
+                <td>@booking.PickUpLocation</td>
+                <td>@booking.DropUpLocation</td>
+                <td class="text-nowrap">@booking.PickUpTime</td>
+                <td class="text-nowrap">@booking.DropOffTime</td>
+                <td>
+                    @if (booking.IsApproved)
+                    {
+                        <span class="btn btn-info">Onaylandı</span>
+                    }
+                    else
+                    {
+                        <span class="btn btn-warning">Onay Bekleniyor</span>
+                    }
+                    @if (booking.IsApproved)
+                    {
+                        <span class="btn btn-warning">İptal Edilmiştir</span>
+                    }
+                </td>
+            </tr>
+          }
+        </tbody>
+ </table>

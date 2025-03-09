@@ -1,0 +1,42 @@
+﻿@model ProfileEditDto
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Areas/User/Views/UserLayout/Index.cshtml";   
+    string defaultImage = "https://www.kindpng.com/picc/m/21-214439_free-high-quality-person-icon-default-profile-picture.png";
+
+}
+
+<form method="post" enctype="multipart/form-data">
+
+    <div class="text-center">
+        <img src="@(!String.IsNullOrEmpty(Model.ImageUrl) ? Model.ImageUrl:defaultImage)" />
+        <input type="file" class="form-control" asp-for="ImageFile" accept="image/png, image/jpeg,image/jpg" />
+        <br />
+    </div>
+
+    <input type="hidden" asp-for="ImageUrl" />
+    <label class="form-label">Ad</label>
+    <input class="form-control" asp-for="FirstName" type="text" required />
+    <br />
+    <label class="form-label">Soyad</label>
+    <input class="form-control" asp-for="LastName" type="text" required /><br />
+
+    <label class="form-label">Email</label>
+    <input class="form-control" asp-for="Email" type="email" required /><br />
+
+    <label class="form-label">Telefon Numarası</label>
+    <input class="form-control" asp-for="PhoneNumber" type="text" required /><br />
+
+    <label class="form-label">Bilgılerı Güncellemek için Şifrenizi Girin</label>
+    <input class="form-control" asp-for="CurrentPassword" type="password" required /><br />
+
+    <p class="text-danger">
+        @Html.ValidationSummary()
+    </p><br />
+
+    <button type="submit" class="btn btn-outline-dark"> Bilgileri Güncelle</button>
+
+
+
+</form>
+

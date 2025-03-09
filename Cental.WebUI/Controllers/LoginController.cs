@@ -46,7 +46,7 @@ namespace Cental.WebUI.Controllers
                 {
                     "Admin" => RedirectToAction("Index", "AdminAbout"),
                     "Manager" => RedirectToAction("Index", "MySocial", new { area = "Manager" }),
-                    "User" => RedirectToAction("Index", "MyProfile", new { area = "User" }),
+                    "User" => RedirectToAction("Index", "Profile", new { area = "User" }),
                     _ => null
                 };
 

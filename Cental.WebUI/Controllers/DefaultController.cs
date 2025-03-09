@@ -1,18 +1,24 @@
 ﻿using Cental.BusinessLayer.Abstract;
 using Cental.DataAccesLayer.Context;
 using Cental.DtoLayer.MessageDtos;
+using Cental.DtoLayer.BookingDtos;
 using Cental.EntityLayer.Entities;
 using Mapster;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Identity;
+using AutoMapper;
 
 namespace Cental.WebUI.Controllers
 {
     [AllowAnonymous]
     public class DefaultController(IMessageService _messageManager,
-                ICarService _carManager,CentalDbContext _context) : Controller
+                ICarService _carManager,CentalDbContext _context,
+                UserManager<AppUser> _userManager,
+                IMapper _mapper,
+                IBookingService _bookingService) : Controller
     {
         public IActionResult Index()
         {
@@ -36,6 +42,47 @@ namespace Cental.WebUI.Controllers
             {
                 return Json(new { success = false, message = "Tekrar girdiğiniz bilgileri kontrol ediniz" });
             }
+        }
+        [HttpPost]
+        public async Task<IActionResult> SetBookingAsync([FromBody] CreateBookingDto bookingDto)
+        {
+            
+            if (User.Identity is not null && User.Identity.IsAuthenticated)
+            {
+                var user = await _userManager.FindByNameAsync(User.Identity.Name);
+                var userRoles = await _userManager.GetRolesAsync(user);
+                if (user is not null && userRoles.Contains("User"))
+                {
+                    bookingDto.UserId = user.Id;
+                    if(TimeSpan.TryParse(bookingDto.PickUpHour,out TimeSpan timespan))
+                    {
+                        bookingDto.PickUpTime = bookingDto.PickUpTime.Date.Add(timespan);
+                    }
+                    if(TimeSpan.TryParse(bookingDto.DropUpHour,out TimeSpan _timespan))
+                    {
+                        bookingDto.DropOffTime = bookingDto.DropOffTime.Date.Add(_timespan);
+                    }
+                    var booking = _mapper.Map<Booking>(bookingDto);
+                    if (ModelState.IsValid)
+                    {
+                        _bookingService.TCreate(booking);
+                        return Json(new { success = true, message = "Teşekküler,talebiniz başarıyla alındı!Size en kısa sürede cevap verilecektir" });
+                    }
+                    else
+                    {
+                        return Json(new { success = false, message = "Tekrar girdiğiniz bilgileri kontrol ediniz" });
+                    }
+                }
+                else
+                {
+                    return Json(new { succes = false, message = "Bu işlemi gerçekleştirmek için User yektiliye sahip olmanız gerekmektedir" });
+                }            
+            }
+            else
+            {
+                return Json(new { sucess = false, message = "Kiralma işlemi yapmanız için sisteme giriş yapmanız gerekmektedir" });
+            }
+           
         }
         public IActionResult Cars()
         {

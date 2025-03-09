@@ -29,5 +29,6 @@ namespace Cental.DataAccesLayer.Context
         public DbSet<Branch> Branches { get; set; }  
         public DbSet<Contact> Contacts{ get; set; }  
         public DbSet<Message> Messages{ get; set; }  
+        public DbSet<Booking> Bookings{ get; set; }  
     }
 }

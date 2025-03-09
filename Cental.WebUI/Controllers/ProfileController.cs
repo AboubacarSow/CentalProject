@@ -2,11 +2,13 @@
 using Cental.DtoLayer.UserDtos;
 using Cental.EntityLayer.Entities;
 using Mapster;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cental.WebUI.Controllers
 {
+	[Authorize(Roles ="Admin")]
     public class ProfileController(UserManager<AppUser> _userManager,IImageService _imageManager) : Controller
 	{
 

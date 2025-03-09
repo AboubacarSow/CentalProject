@@ -32,6 +32,8 @@
 
     <!-- Template Stylesheet -->
     <link href="~/Cental-1.0.0/css/style.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -95,9 +97,67 @@
                         </div>
                         <a asp-action="Contact" asp-controller="Default" asp-area="" class="nav-item nav-link">İletişim</a>
                     </div>
-                    <a asp-action="Login" asp-controller="Account" asp-area="User" class="btn btn-primary rounded-pill py-2 px-4 ms-2">Giriş Yap</a>
-                    <a asp-action="SignUp" asp-controller="Account" asp-area="User" class="btn btn-primary rounded-pill py-2 px-4 ms-2">Kayıt Olun</a>
+                    @if(User.Identity is not null && User.Identity.IsAuthenticated)
+                    {
+                        <button onclick="logout()" class="btn btn-primary rounded-pill py-2 px-4 ms-2">Çıkış Yap</button>
 
+                    }
+                    else
+                    {
+                        <a asp-action="Index" asp-controller="Login" asp-area="User" class="btn btn-primary rounded-pill py-2 px-4 ms-2">Giriş Yap</a>
+
+                    }
+                    <script>
+                       function logout(){
+
+                            let _url="@Url.Action("Logout","Login",new {area="User"})";
+                                        Swal.fire({
+                                title: "Emin Mısınız?",
+                                text: "Çıkış Yapıyorsunuz şuan!",
+                                icon: "warning",
+                                showCancelButton: true,
+                                confirmButtonColor: "#3085d6",
+                                cancelButtonColor: "#d33",
+                                confirmButtonText: "Evet",
+                                cancelButtonText:"İptal"
+                            }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        fetch(_url,{
+                                            method:'POST',
+                                            headers:{
+                                                    'content-Type':'application/json',
+                                                    'Accept':'application/json'
+                                            }
+                                        }).then(response => response.json())
+                                         .then(data =>{
+                                                if (data.success) {
+                                                    return Swal.fire({
+                                                         title: "Çıkış Yapıldı",
+                                                        text: data.message,
+                                                        icon: "success",
+                                                         timer: 1500
+                                                    });
+                                                }
+                                                else{
+                                                    return Swal.fire({
+                                                        title:"Hata",
+                                                        text:"Bir hata oluştu",
+                                                        icon:"error",
+                                                        timer:1000
+                                                    });
+                                                }
+                                         }).then(() => {
+                                            window.location.reload(); // Rafraîchir la page après logout
+                                         });
+                                    }
+                            });                          
+                       }
+                                    
+                                 
+                           
+
+                       
+                    </script>
                 </div>
             </nav>
         </div>

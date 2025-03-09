@@ -54,7 +54,7 @@ namespace Cental.WebUI.Areas.Manager.Controllers
                 var result = await _userManager.UpdateAsync(user);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "About");
+                    return RedirectToAction("MyProfile", "Profile");
                 }
                 foreach (var error in result.Errors)
                 {

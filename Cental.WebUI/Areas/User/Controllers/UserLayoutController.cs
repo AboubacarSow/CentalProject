@@ -2,14 +2,14 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Cental.WebUI.Areas.Manager.Controllers
+namespace Cental.WebUI.Areas.User.Controllers
 {
-    [Area("Manager")]
-    public class LayoutController : Controller
+    [Area("User")]
+    public class UserLayoutController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
 
-        public LayoutController(UserManager<AppUser> userManager)
+        public UserLayoutController(UserManager<AppUser> userManager)
         {
             _userManager = userManager;
         }

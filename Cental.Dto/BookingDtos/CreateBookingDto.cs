@@ -1,15 +1,16 @@
-﻿namespace Cental.EntityLayer.Entities
+﻿using Cental.EntityLayer.Entities;
+
+namespace Cental.DtoLayer.BookingDtos
 {
-    public class Booking
+    public class CreateBookingDto
     {
-        public int BookingId { get; set; }
         public string ModelName { get; set; }
         public string PickUpLocation { get; set; }
         public string DropUpLocation { get; set; }
         public DateTime PickUpTime { get; set; }
+        public string PickUpHour { get; set; }
         public DateTime DropOffTime { get; set; }
-        public bool IsValid { get; set; } = true;
-        public bool IsApproved { get; set; }
+        public string DropUpHour { get; set; }
         public int UserId { get; set; }
         public virtual AppUser User { get; set; }
     }
