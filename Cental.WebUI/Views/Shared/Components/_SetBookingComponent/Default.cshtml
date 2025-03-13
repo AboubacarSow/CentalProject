@@ -32,17 +32,9 @@
                 <div class="d-flex align-items-center bg-light text-body rounded-start p-2">
                     <span class="fas fa-calendar-alt"></span><span class="ms-1">Saat Kaçta ?</span>
                 </div>
-                <input class="form-control" type="date" id="pickdate" required asp-for="PickUpTime" />
-                <select class="form-select ms-3" type="time" aria-label="Default select example" id="picktime" required asp-for="PickUpHour">
-                    <option selected>12:00AM</option>
-                    <option value="1">1:00AM</option>
-                    <option value="2">2:00AM</option>
-                    <option value="3">3:00AM</option>
-                    <option value="4">4:00AM</option>
-                    <option value="5">5:00AM</option>
-                    <option value="6">6:00AM</option>
-                    <option value="7">7:00AM</option>
-                </select>
+                <input class="form-control rounded-right" type="date" id="pickdate" required asp-for="PickUpTime" />
+                <input class="ms-3 rounded-2" type="time" id="picktime" required asp-for="PickUpHour" />
+                   
             </div>
         </div>
         <div class="col-12">
@@ -50,17 +42,10 @@
                 <div class="d-flex align-items-center bg-light text-body rounded-start p-2">
                     <span class="fas fa-calendar-alt"></span><span class="ms-1">Drop off</span>
                 </div>
-                <input class="form-control" type="date" required id="dropdate" asp-for="DropOffTime" />
-                <select class="form-select ms-3" type="time" aria-label="Default select example" required id="droptime" asp-for="DropUpHour">
-                    <option selected>12:00AM</option>
-                    <option value="1">1:00AM</option>
-                    <option value="2">2:00AM</option>
-                    <option value="3">3:00AM</option>
-                    <option value="4">4:00AM</option>
-                    <option value="5">5:00AM</option>
-                    <option value="6">6:00AM</option>
-                    <option value="7">7:00AM</option>
-                </select>
+                <input class="form-control rounded-right" type="date" required id="dropdate" asp-for="DropOffTime" />
+                <input class="ms-3 rounded-2" type="time" required id="droptime" asp-for="DropUpHour" />
+                   
+               
             </div>
         </div>
         <div class="col-12">
@@ -80,18 +65,18 @@
             DropUpLocation : document.getElementById('dropuplocation').value,
             PickUpTime:document.getElementById('pickdate').value,
             PickUpHour :document.getElementById('picktime').value,
-            DropTime : document.getElementById('dropdate').value,
+            DropOffTime : document.getElementById('dropdate').value,
             DropUpHour : document.getElementById('droptime').value,
         };//Checking whether the is an empty field 
-        // if (!formData.ModelName || !formData.PickUpLocation || !formData.DropOffLocation ||
-        // !formData.PickUpTime  || !formData.DropTime) {
-        // Swal.fire({
-        //     position: "top-end",
-        //     title: "Eksik Bilgi!",
-        //     text: "Lütfen tüm alanları doldurun.",
-        //     icon: "warning",
-        //     showConfirmButton: true
-        // }); return;}
+        if (!formData.ModelName || !formData.PickUpLocation || !formData.DropUpLocation ||
+        !formData.PickUpTime || !formData.DropOffTime || !formData.PickUpHour || !formData.DropUpHour) {
+            Swal.fire({
+                position: "top-end",
+                title: "Eksik Bilgi!",
+                text: "Lütfen tüm alanları doldurun.",
+                icon: "warning",
+                showConfirmButton: true
+            }); return;}
         fetch("/Default/SetBooking",{
              method: "POST",
              headers:{
@@ -104,18 +89,18 @@
          .then(data => {
               if (data.success) {
                   Swal.fire({
-                      position:"top-end",
+                      position:"top-center",
                       title: "Talebiniz başarıyla Gönderildi!",
                       text: data.message,
                       icon: "success",
-                      timer: 1500
+                      timer: 4000
                   });
                        // Resetting my form areas
                   document.getElementById('formulaire').reset();
               }
               else{
                    Swal.fire({
-                           position:"top-end",
+                           position:"top-center",
                            title: "İşlem Başarısız!",
                            text: data.message,
                            icon: "error",
@@ -128,7 +113,7 @@
                    // Erreur réseau ou autre : afficher un message d'erreur
                    console.error('Bir hata oluştu',error);
                    Swal.fire({
-                       position:"top-end",
+                       position:"top-center",
                        title: "Error!",
                        text: "Bir hata oluştu.",
                        icon: "error",

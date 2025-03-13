@@ -54,18 +54,17 @@ namespace Cental.WebUI.Controllers
                 if (user is not null && userRoles.Contains("User"))
                 {
                     bookingDto.UserId = user.Id;
-                    if(TimeSpan.TryParse(bookingDto.PickUpHour,out TimeSpan timespan))
+                    bookingDto.User = user;
+                    if (TimeSpan.TryParse(bookingDto.PickUpHour, out TimeSpan timespan))
                     {
                         bookingDto.PickUpTime = bookingDto.PickUpTime.Date.Add(timespan);
-                        var fulldate = bookingDto.PickUpTime;
                     }
                     if(TimeSpan.TryParse(bookingDto.DropUpHour,out TimeSpan _timespan))
                     {
                         bookingDto.DropOffTime = bookingDto.DropOffTime.Date.Add(_timespan);
-                        var fulldate = bookingDto.DropOffTime;
                     }
                     var booking = _mapper.Map<Booking>(bookingDto);
-                    if (ModelState.IsValid)
+                    if (ModelState.IsValid && bookingDto.DateIsValid is true)
                     {
                         _bookingService.TCreate(booking);
                         return Json(new { success = true, message = "Teşekküler,talebiniz başarıyla alındı!Size en kısa sürede cevap verilecektir" });

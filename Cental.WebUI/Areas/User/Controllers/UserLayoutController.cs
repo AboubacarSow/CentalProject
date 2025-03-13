@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Cental.WebUI.Areas.User.Controllers
 {
     [Area("User")]
+    
     public class UserLayoutController : Controller
     {
         private readonly UserManager<AppUser> _userManager;

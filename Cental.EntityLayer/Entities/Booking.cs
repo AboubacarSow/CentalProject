@@ -9,7 +9,7 @@
         public DateTime PickUpTime { get; set; }
         public DateTime DropOffTime { get; set; }
         public bool IsValid { get; set; } = true;
-        public bool IsApproved { get; set; }
+        public bool IsApproved { get; set; } = false;
         public int UserId { get; set; }
         public virtual AppUser User { get; set; }
     }

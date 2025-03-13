@@ -12,11 +12,10 @@ namespace Cental.WebUI.Areas.User.Controllers
     public class LoginController : Controller
     {
         private readonly SignInManager<AppUser> _signInManager;
-        private readonly UserManager<AppUser> _userManager;
+   
 
         public LoginController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
         {
-            _userManager = userManager;
             _signInManager = signInManager;
         }
 

@@ -5,7 +5,7 @@ using Cental.EntityLayer.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
+
 
 namespace Cental.WebUI.Areas.User.Controllers
 {
@@ -16,10 +16,11 @@ namespace Cental.WebUI.Areas.User.Controllers
         private readonly IBookingService _bookingService;
         private readonly UserManager<AppUser> _userManager;
         private readonly IMapper _mapper;
-        public BookingController(IBookingService bookingService, IMapper mapper)
+        public BookingController(IBookingService bookingService, IMapper mapper,UserManager<AppUser> userManager)
         {
             _bookingService = bookingService;
             _mapper = mapper;
+            _userManager = userManager;
         }
         public async Task<IActionResult> Index()
         {

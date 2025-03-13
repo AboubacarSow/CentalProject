@@ -10,8 +10,9 @@ namespace Cental.DtoLayer.BookingDtos
         public DateTime PickUpTime { get; set; }
         public string PickUpHour { get; set; }
         public DateTime DropOffTime { get; set; }
+        public bool DateIsValid => PickUpTime>=DateTime.UtcNow && PickUpTime < DropOffTime;
         public string DropUpHour { get; set; }
         public int UserId { get; set; }
-        public virtual AppUser User { get; set; }
+        public virtual AppUser? User { get; set; }
     }
 }
