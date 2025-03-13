@@ -1,12 +1,13 @@
-﻿@model CreateBookingDto 
+﻿
 @{
     Layout = null;
+    var param = ViewData["id"].ToString();
 }
 
-<form method="post" id="formulaire" asp-action="SetBooking" asp-controller="Default">
+<form method="post" id="formulaire-@param">
     <div class="row g-3">
         <div class="col-12">
-            <select class="form-control" asp-items="@ViewBag.Brands" name="ModelName" id="brand" required>
+            <select class="form-control" asp-items="@ViewBag.Brands" id="brand" required>
                 <option selected disabled>Araba Markası Seçin</option>
             </select>
         </div>
@@ -15,7 +16,7 @@
                 <div class="d-flex align-items-center bg-light text-body rounded-start p-2">
                     <span class="fas fa-map-marker-alt"></span> <span class="ms-1">Alma Konum </span>
                 </div>
-                <input class="form-control" type="text" id="pickuplocation" asp-for="PickUpLocation" required placeholder="Bir Şehir ya da Havalimanı Girin" />
+                <input class="form-control" type="text" id="pickuplocation" required placeholder="Bir Şehir ya da Havalimanı Girin" />
             </div>
         </div>
         <div class="col-12">
@@ -24,7 +25,7 @@
                 <div class="d-flex align-items-center bg-light text-body rounded-start p-2">
                     <span class="fas fa-map-marker-alt"></span><span class="ms-1">Bırakma Konum</span>
                 </div>
-                <input class="form-control" type="text" id="dropuplocation" asp-for="DropUpLocation" required placeholder="Bir Şehir ya da Havalimanı Girin" />
+                <input class="form-control" type="text" id="dropuplocation" required placeholder="Bir Şehir ya da Havalimanı Girin" />
             </div>
         </div>
         <div class="col-12">
@@ -32,8 +33,8 @@
                 <div class="d-flex align-items-center bg-light text-body rounded-start p-2">
                     <span class="fas fa-calendar-alt"></span><span class="ms-1">Saat Kaçta ?</span>
                 </div>
-                <input class="form-control rounded-right" type="date" id="pickdate" required asp-for="PickUpTime" />
-                <input class="ms-3 rounded-2" type="time" id="picktime" required asp-for="PickUpHour" />
+                <input class="form-control rounded-right" type="date" id="pickdate" required  />
+                <input class="ms-3 rounded-2" type="time" id="picktime" required  />
                    
             </div>
         </div>
@@ -42,8 +43,8 @@
                 <div class="d-flex align-items-center bg-light text-body rounded-start p-2">
                     <span class="fas fa-calendar-alt"></span><span class="ms-1">Drop off</span>
                 </div>
-                <input class="form-control rounded-right" type="date" required id="dropdate" asp-for="DropOffTime" />
-                <input class="ms-3 rounded-2" type="time" required id="droptime" asp-for="DropUpHour" />
+                <input class="form-control rounded-right" type="date" required id="dropdate" />
+                <input class="ms-3 rounded-2" type="time" required id="droptime"  />
                    
                
             </div>
@@ -57,7 +58,8 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
-    document.getElementById('formulaire').addEventListener("submit",function(event){
+    document.getElementById('formulaire-@param').addEventListener("submit",function(event){
+
         event.preventDefault();
         let formData={
             ModelName:document.getElementById('brand').value,
@@ -70,6 +72,7 @@
         };//Checking whether the is an empty field 
         if (!formData.ModelName || !formData.PickUpLocation || !formData.DropUpLocation ||
         !formData.PickUpTime || !formData.DropOffTime || !formData.PickUpHour || !formData.DropUpHour) {
+            
             Swal.fire({
                 position: "top-end",
                 title: "Eksik Bilgi!",

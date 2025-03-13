@@ -6,14 +6,9 @@ namespace Cental.WebUI.Areas.User.Controllers
 {
     [Area("User")]
     
-    public class UserLayoutController : Controller
+    public class UserLayoutController(UserManager<AppUser> userManager) : Controller
     {
-        private readonly UserManager<AppUser> _userManager;
-
-        public UserLayoutController(UserManager<AppUser> userManager)
-        {
-            _userManager = userManager;
-        }
+        private readonly UserManager<AppUser> _userManager = userManager;
 
         public async Task<IActionResult> Index()
         {
