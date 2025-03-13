@@ -1,21 +1,13 @@
-﻿@model UserRegisterDto
+﻿@model UserLoginDto
 @{
-	Layout = null;
+    Layout = null;
 }
 
 <!DOCTYPE html>
-<html lang="en">
 
+<html>
 <head>
-
-	<title>Cental User Kayıt İşlemi</title>
-	<!-- HTML5 Shim and Respond.js IE11 support of HTML5 elements and media queries -->
-	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-	<!--[if lt IE 11]>
-		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-		<![endif]-->
-	<!-- Meta -->
+    <title>User Login</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -31,12 +23,8 @@
 			integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 	<!-- vendor css -->
 	<link rel="stylesheet" href="~/flat-able-admin/dist/assets/css/style.css">
-
-
-
 </head>
 <body>
-	<!-- [ auth-signup ] start -->
 	<div class="auth-wrapper">
 		<div class="auth-content text-center">
 			<img src="~/flat-able-admin/dist/assets/images/logo.png" alt="" class="img-fluid mb-4">
@@ -46,34 +34,23 @@
 						<form method="post">
 
 							<div class="card-body">
-								<h4 class="f-w-400">Kayet Formu</h4>
+								<h4 class="f-w-400">Giriş Formu</h4>
 								<hr>
 								<div class="form-group mb-3">
-									<input asp-for="FirstName" type="text" class="form-control" placeholder="Adınız" required>
-								</div>
-								<div class="form-group mb-3">
-									<input asp-for="LastName" type="text" class="form-control" placeholder="Soyadınız" required>
-								</div>
-								<div class="form-group mb-3">
-									<input asp-for="UserName" type="text" class="form-control" placeholder="Kullanıcı Adı" required>
+									<input asp-for="UserName" type="text" class="form-control" placeholder="Kullanıcı Adınız" required>
 								</div>
 
-								<div class="form-group mb-3">
-									<input asp-for="Email" type="text" class="form-control" placeholder="Email Adresiniz" required>
-								</div>
 								<div class="form-group mb-4">
 									<input asp-for="Password" type="password" class="form-control" placeholder="Şifre" required>
 								</div>
-								<div class="form-group mb-4">
-									<input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Şifreyi Doğrulayın" required>
-								</div>
+
 
 								<p class="text-danger">
 									@Html.ValidationSummary()
 								</p>
-								<button class="btn btn-primary btn-block mb-4" type="submit">Kayıt Ol</button>
+								<button class="btn btn-primary btn-block mb-4" type="submit">Giriş Yapın</button>
 								<hr>
-								<p class="mb-2">Zaten Hebınız Var mı? <a asp-action="Index" asp-controller="Login" asp-area="User" class="f-w-400">Giriş Yapınız</a></p>
+								<p class="mb-2"> Hesabınız Yok mu? <a asp-action="SignUp" asp-controller="Profile" asp-area="User" class="f-w-400">Kayıt Olun</a></p>
 							</div>
 						</form>
 					</div>
@@ -87,9 +64,5 @@
 	<script src="~/flat-able-admin/dist/assets/js/plugins/bootstrap.min.js"></script>
 
 	<script src="~/flat-able-admin/dist/assets/js/pcoded.min.js"></script>
-
-
-
 </body>
-
 </html>

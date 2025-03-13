@@ -3,12 +3,12 @@ using Cental.EntityLayer.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
+
 
 namespace Cental.WebUI.Areas.User.Controllers
 {
     [Area("User")]
-    
+    [AllowAnonymous]
     public class LoginController : Controller
     {
         private readonly SignInManager<AppUser> _signInManager;

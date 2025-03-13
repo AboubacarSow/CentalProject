@@ -3,10 +3,10 @@
     Layout = null;
 }
 
-<form method="post" id="formulaire">
+<form method="post" id="formulaire" asp-action="SetBooking" asp-controller="Default">
     <div class="row g-3">
         <div class="col-12">
-            <select class="form-control" asp-items="@ViewBag.Brands" name="ModelName" id="brand">
+            <select class="form-control" asp-items="@ViewBag.Brands" name="ModelName" id="brand" required>
                 <option selected disabled>Araba Markası Seçin</option>
             </select>
         </div>
@@ -15,7 +15,7 @@
                 <div class="d-flex align-items-center bg-light text-body rounded-start p-2">
                     <span class="fas fa-map-marker-alt"></span> <span class="ms-1">Alma Konum </span>
                 </div>
-                <input class="form-control" type="text" id="pickuplocation" asp-for="PickUpLocation" placeholder="Bir Şehir ya da Havalimanı Girin"/>
+                <input class="form-control" type="text" id="pickuplocation" asp-for="PickUpLocation" required placeholder="Bir Şehir ya da Havalimanı Girin" />
             </div>
         </div>
         <div class="col-12">
@@ -24,7 +24,7 @@
                 <div class="d-flex align-items-center bg-light text-body rounded-start p-2">
                     <span class="fas fa-map-marker-alt"></span><span class="ms-1">Bırakma Konum</span>
                 </div>
-                <input class="form-control" type="text" id="dropuplocation" asp-for="DropUpLocation" placeholder="Bir Şehir ya da Havalimanı Girin" />
+                <input class="form-control" type="text" id="dropuplocation" asp-for="DropUpLocation" required placeholder="Bir Şehir ya da Havalimanı Girin" />
             </div>
         </div>
         <div class="col-12">
@@ -32,8 +32,8 @@
                 <div class="d-flex align-items-center bg-light text-body rounded-start p-2">
                     <span class="fas fa-calendar-alt"></span><span class="ms-1">Saat Kaçta ?</span>
                 </div>
-                <input class="form-control" type="date" id="pickdate" asp-for="PickUpTime" />
-                <select class="form-select ms-3" aria-label="Default select example" id="picktime" asp-for="PickUpHour">
+                <input class="form-control" type="date" id="pickdate" required asp-for="PickUpTime" />
+                <select class="form-select ms-3" type="time" aria-label="Default select example" id="picktime" required asp-for="PickUpHour">
                     <option selected>12:00AM</option>
                     <option value="1">1:00AM</option>
                     <option value="2">2:00AM</option>
@@ -50,8 +50,8 @@
                 <div class="d-flex align-items-center bg-light text-body rounded-start p-2">
                     <span class="fas fa-calendar-alt"></span><span class="ms-1">Drop off</span>
                 </div>
-                <input class="form-control" type="date" id="dropdate" asp-for="DropOffTime" />
-                <select class="form-select ms-3" aria-label="Default select example" id="droptime" asp-for="DropUpHour">
+                <input class="form-control" type="date" required id="dropdate" asp-for="DropOffTime" />
+                <select class="form-select ms-3" type="time" aria-label="Default select example" required id="droptime" asp-for="DropUpHour">
                     <option selected>12:00AM</option>
                     <option value="1">1:00AM</option>
                     <option value="2">2:00AM</option>
@@ -64,7 +64,7 @@
             </div>
         </div>
         <div class="col-12">
-            <button class="btn btn-light w-100 py-2">Kiralama uygula</button>
+            <button class="btn btn-light w-100 py-2" type="submit">Kiralama uygula</button>
         </div>
     </div>
 </form>
@@ -72,28 +72,27 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
-    document.getElementById('formulaire').addEventListener('submit',function(event){
+    document.getElementById('formulaire').addEventListener("submit",function(event){
         event.preventDefault();
         let formData={
             ModelName:document.getElementById('brand').value,
             PickUpLocation:document.getElementById('pickuplocation').value,
-            DropOffLocation : document.getElementById('dropuplocation').value,
+            DropUpLocation : document.getElementById('dropuplocation').value,
             PickUpTime:document.getElementById('pickdate').value,
             PickUpHour :document.getElementById('picktime').value,
             DropTime : document.getElementById('dropdate').value,
             DropUpHour : document.getElementById('droptime').value,
         };//Checking whether the is an empty field 
-        if (!formData.ModelName || !formData.PickUpLocation || !formData.DropOffLocation ||
-        !formData.PickUpTime || !formData.PickUpHour || !formData.DropTime || !formData.DropUpHour) {
-        Swal.fire({
-            position: "top-end",
-            title: "Eksik Bilgi!",
-            text: "Lütfen tüm alanları doldurun.",
-            icon: "warning",
-            showConfirmButton: true
-        });}
-        return;
-        fetch('/Default/SetBooking',{
+        // if (!formData.ModelName || !formData.PickUpLocation || !formData.DropOffLocation ||
+        // !formData.PickUpTime  || !formData.DropTime) {
+        // Swal.fire({
+        //     position: "top-end",
+        //     title: "Eksik Bilgi!",
+        //     text: "Lütfen tüm alanları doldurun.",
+        //     icon: "warning",
+        //     showConfirmButton: true
+        // }); return;}
+        fetch("/Default/SetBooking",{
              method: "POST",
              headers:{
                        "Content-Type": "application/json",
@@ -121,7 +120,7 @@
                            text: data.message,
                            icon: "error",
                            showConfirmButton: true,
-                           timer: 3000 
+                           timer: 6000 
                    });
               }
          })

@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Cental.WebUI.Controllers
 {
 	[Authorize(Roles ="Admin")]
+
     public class ProfileController(UserManager<AppUser> _userManager,IImageService _imageManager) : Controller
 	{
 

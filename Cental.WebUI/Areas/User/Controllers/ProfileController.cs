@@ -75,10 +75,12 @@ namespace Cental.WebUI.Areas.User.Controllers
             return View(userDto);
         }
 
+        [AllowAnonymous]
         public IActionResult SignUp()
         {
             return View();
         }
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> SignUp(UserRegisterDto userDto)
         {
@@ -99,7 +101,7 @@ namespace Cental.WebUI.Areas.User.Controllers
                 return View(userDto);
             }
             await _userManager.AddToRoleAsync(user, "User");
-            return RedirectToAction("Index", "Login");
+            return RedirectToAction("Index", "Login", new {area="User"});
         }
     }
 }

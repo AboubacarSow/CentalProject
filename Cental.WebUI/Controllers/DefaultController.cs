@@ -44,7 +44,7 @@ namespace Cental.WebUI.Controllers
             }
         }
         [HttpPost]
-        public async Task<IActionResult> SetBookingAsync([FromBody] CreateBookingDto bookingDto)
+        public async Task<IActionResult> SetBooking([FromBody] CreateBookingDto bookingDto)
         {
             
             if (User.Identity is not null && User.Identity.IsAuthenticated)
@@ -57,10 +57,12 @@ namespace Cental.WebUI.Controllers
                     if(TimeSpan.TryParse(bookingDto.PickUpHour,out TimeSpan timespan))
                     {
                         bookingDto.PickUpTime = bookingDto.PickUpTime.Date.Add(timespan);
+                        var fulldate = bookingDto.PickUpTime;
                     }
                     if(TimeSpan.TryParse(bookingDto.DropUpHour,out TimeSpan _timespan))
                     {
                         bookingDto.DropOffTime = bookingDto.DropOffTime.Date.Add(_timespan);
+                        var fulldate = bookingDto.DropOffTime;
                     }
                     var booking = _mapper.Map<Booking>(bookingDto);
                     if (ModelState.IsValid)
@@ -70,6 +72,7 @@ namespace Cental.WebUI.Controllers
                     }
                     else
                     {
+                        
                         return Json(new { success = false, message = "Tekrar girdiğiniz bilgileri kontrol ediniz" });
                     }
                 }
