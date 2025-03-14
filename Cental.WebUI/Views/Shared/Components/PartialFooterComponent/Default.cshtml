@@ -1,0 +1,25 @@
+﻿@model FooterViewModel
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<div class="col-md-6 col-lg-6 col-xl-3">
+    <div class="footer-item d-flex flex-column">
+        <h4 class="text-white mb-4">İletişim Bilgi</h4>
+        @foreach(var contact in Model.Contacts)
+        {
+            <a href="#"><i class="fa fa-map-marker-alt me-2"></i> @contact.Address</a>
+            <a href="mailto:@contact.Email"><i class="fas fa-envelope me-2"></i> @contact.Email</a>
+            <a href="tel:@contact.Phone"><i class="fas fa-phone me-2"></i> @contact.Phone</a>
+            <a href="tel:@contact.Phone" class="mb-3"><i class="fas fa-print me-2"></i> @contact.Phone</a>
+            
+        }
+        <div class="d-flex">
+            @foreach(var social in Model.Pages)
+            {
+                <a class="btn btn-secondary btn-md-square rounded-circle me-3" href="@social.Url"><i class="@social.Icon text-white"></i></a>
+        
+            }
+            
+        </div>
+    </div>
+</div>

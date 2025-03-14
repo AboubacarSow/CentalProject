@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewData["Title"] = "Service";
+    Layout = "~/Views/UIlLayout/Index.cshtml";
+}
+
+@await Component.InvokeAsync("_DefaultServiceComponent")
+<br />
+@await Component.InvokeAsync("_DefaultCounterComponent")
+@await Component.InvokeAsync("_DefaultTestimonialComponent")
+@await Component.InvokeAsync("_DefaultInnerBannerComponent")

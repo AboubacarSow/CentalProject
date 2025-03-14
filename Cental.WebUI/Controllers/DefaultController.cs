@@ -29,6 +29,14 @@ namespace Cental.WebUI.Controllers
         {
             return View();
         }
+        public IActionResult About()
+        {
+            return View();
+        }
+        public IActionResult Service()
+        {
+            return View();
+        }
         [HttpPost]
         public IActionResult SendMessage([FromBody]CreateMessageDto messageDto)
         {
