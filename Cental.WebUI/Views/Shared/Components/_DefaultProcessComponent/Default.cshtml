@@ -1,0 +1,33 @@
+﻿@model List<ResultProcessDto>
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<div class="container-fluid steps py-5">
+    <div class="container py-5">
+        <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px;">
+            <h1 class="display-5 text-capitalize text-white mb-3">Cental<span class="text-primary"> Process</span></h1>
+            <p class="mb-0 text-white">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut amet nemo expedita asperiores commodi accusantium at cum harum, excepturi, quia tempora cupiditate! Adipisci facilis modi quisquam quia distinctio,
+            </p>
+        </div>
+        <div class="row g-4">
+            @{
+                int count = 0;
+            }
+            @foreach(var proc in Model)
+            {
+                count++;
+                <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="steps-item p-4 mb-4">
+                    <h4>@proc.Title</h4>
+                    <p class="mb-0">@proc.Description</p>
+                    <div class="setps-number">0 @count.</div>
+                </div>
+            </div>
+                
+            }
+           
+        </div>
+    </div>
+</div>

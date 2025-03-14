@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Cental.BusinessLayer.Abstract;
 using Cental.DtoLayer.FeatureDtos;
+using Cental.WebUI.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cental.WebUI.ViewComponents.Default
@@ -10,7 +11,13 @@ namespace Cental.WebUI.ViewComponents.Default
         public IViewComponentResult Invoke()
         {
             var features = _featureService.TGetAll();
-            return View(_mapper.Map<List<ResultFeatureDto>>(features));
+            var featureDtos = _mapper.Map<List<ResultFeatureDto>>(features);
+            var featureViewModel = new FeatureViewModel()
+            {
+                Features = featureDtos.Take(2).ToList(),
+                FeaturesRight = featureDtos.Skip(2).Take(2).ToList()
+            };
+            return View(featureViewModel);
         }
     }
 }

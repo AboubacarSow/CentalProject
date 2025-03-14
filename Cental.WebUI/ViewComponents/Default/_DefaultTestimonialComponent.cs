@@ -1,12 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Cental.BusinessLayer.Abstract;
+using Cental.DtoLayer.TestimonialDtos;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Cental.WebUI.ViewComponents.Default
 {
-    public class _DefaultTestimonialComponent :ViewComponent
+    public class _DefaultTestimonialComponent(ITestimonialService _testimonialService, IMapper _mapper) :ViewComponent
     {
         public IViewComponentResult Invoke()
         {
-            return View();
+            var testimonials = _testimonialService.TGetAll();
+            
+            return View(_mapper.Map<List<ResultTestimonialDto>>(testimonials));
         }
     }
 }
