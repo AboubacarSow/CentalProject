@@ -1,0 +1,28 @@
+﻿@model List<ResultSubscriberDto>
+@{
+    ViewData["Title"] = "Aboneler";
+    Layout = "~/Views/AdminLayout/Layout.cshtml";
+    int count = 0;
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>N°</th>
+        <th>Email</th>
+        <th>Kullanıcı</th>
+        <th>Durum</th>
+        <th>Sil</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        count++;
+        <tr>
+            <td>@count</td>
+            <td>@item.Email</td>
+            <td>@(item.UserId is not null ? item.User.UserName: "X-kullanıcı")</td>
+            <td>@(item.IsActive is true ? "Aktiftir": "Passiftir")</td>
+            <td><a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger"><i class="fa fa-trash me-2"></i> Sil</a> </td>
+        </tr>
+    }
+</table>
+

@@ -55,6 +55,9 @@ namespace Cental.BusinessLayer.Extensions
 
             services.AddScoped<IBookingDal, EfBookingDal>();
             services.AddScoped<IBookingService, BookingManager>();
+
+            services.AddScoped<ISubscriberDal, EfSubscriberDal>();
+            services.AddScoped<ISubscriberService, SubscriberManager>();
             
 
             services.AddScoped(typeof(IGenericDal<>), typeof(GenericRepository<>));

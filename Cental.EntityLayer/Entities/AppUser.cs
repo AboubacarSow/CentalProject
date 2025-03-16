@@ -1,9 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Cental.EntityLayer.Entities
 {
@@ -12,6 +8,7 @@ namespace Cental.EntityLayer.Entities
         public string FirstName { get; set; }
         public string LastName { get; set; }    
         public string? ImageUrl { get; set; }
+
         public virtual List<MSocialMedia> SocialMedias { get; set; }
     }
 }

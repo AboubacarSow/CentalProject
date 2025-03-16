@@ -1,4 +1,4 @@
-﻿
+﻿@model SubscriptionViewModel
 @{
     Layout = null;
 }
@@ -47,7 +47,7 @@
     <!-- Spinner End -->
     <!-- Topbar Start -->
     @await Component.InvokeAsync("TopBarComponent")
-   
+
     <!-- Topbar End -->
     <!-- Navbar & Hero Start -->
     <div class="container-fluid nav-bar sticky-top px-0 px-lg-4 py-2 py-lg-0">
@@ -85,67 +85,16 @@
                     }
                     else
                     {
-                       <a asp-action="Index" asp-controller="Login" asp-area="User" class="btn btn-primary rounded-pill py-2 px-4 ms-2">Giriş Yap</a>
+                        <a asp-action="Index" asp-controller="Login" asp-area="User" class="btn btn-primary rounded-pill py-2 px-4 ms-2">Giriş Yap</a>
 
                     }
-                    <script>
-                       function logout(){
-                           //There is an issue in this operation,it's very specific and only concerned the user role when we look at the 
-                           //url here down. We have to generlize it 
-                            let _url="@Url.Action("Logout","Login",new {area="User"})";
-                                        Swal.fire({
-                                title: "Emin Mısınız?",
-                                text: "Çıkış Yapıyorsunuz şuan!",
-                                icon: "warning",
-                                showCancelButton: true,
-                                confirmButtonColor: "#3085d6",
-                                cancelButtonColor: "#d33",
-                                confirmButtonText: "Evet",
-                                cancelButtonText:"İptal"
-                            }).then((result) => {
-                                    if (result.isConfirmed) {
-                                        fetch(_url,{
-                                            method:'POST',
-                                            headers:{
-                                                    'content-Type':'application/json',
-                                                    'Accept':'application/json'
-                                            }
-                                        }).then(response => response.json())
-                                         .then(data =>{
-                                                if (data.success) {
-                                                    return Swal.fire({
-                                                         title: "Çıkış Yapıldı",
-                                                        text: data.message,
-                                                        icon: "success",
-                                                         timer: 1500
-                                                    });
-                                                }
-                                                else{
-                                                    return Swal.fire({
-                                                        title:"Hata",
-                                                        text:"Bir hata oluştu",
-                                                        icon:"error",
-                                                        timer:1000
-                                                    });
-                                                }
-                                         }).then(() => {
-                                            window.location.reload(); // Rafraîchir la page après logout
-                                         });
-                                    }
-                            });                          
-                       }
-                                    
-                                 
-                           
-
-                       
-                    </script>
+                    
                 </div>
             </nav>
         </div>
     </div>
     <!-- Navbar & Hero End -->
-     @RenderBody()
+    @RenderBody()
     <!-- Footer Start -->
     <div class="container-fluid footer py-5 wow fadeIn" data-wow-delay="0.2s">
         <div class="container py-5">
@@ -156,10 +105,8 @@
                             <h4 class="text-white mb-4">About Us</h4>
                             <p class="mb-3">Dolor amet sit justo amet elitr clita ipsum elitr est.Lorem ipsum dolor sit amet, consectetur adipiscing elit consectetur adipiscing elit.</p>
                         </div>
-                        <div class="position-relative">
-                            <input class="form-control rounded-pill w-100 py-3 ps-4 pe-5" type="text" placeholder="Emailiniz  Giriniz">
-                            <button type="button" class="btn btn-secondary rounded-pill position-absolute top-0 end-0 py-2 mt-2 me-2">Abone Ol</button>
-                        </div>
+                        @await Component.InvokeAsync("SubscriptionComponent")
+                        
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-6 col-xl-3">
@@ -229,6 +176,56 @@
 
     <!-- Template Javascript -->
     <script src="~/Cental-1.0.0/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+         function logout(){
+                        //There is an issue in this operation,it's very specific and only concerned the user role when we look at the
+                        //url here down. We have to generlize it
+                        let _url="@Url.Action("Logout", "Login", new { area = "User" })";
+                        Swal.fire({
+                            title: "Emin Mısınız?",
+                            text: "Çıkış Yapıyorsunuz şuan!",
+                            icon: "warning",
+                            showCancelButton: true,
+                            confirmButtonColor: "#3085d6",
+                            cancelButtonColor: "#d33",
+                            confirmButtonText: "Evet",
+                            cancelButtonText:"İptal"
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                fetch(_url,{
+                                method:'POST',
+                                headers:{
+                                'content-Type':'application/json',
+                                'Accept':'application/json'
+                                }
+                        }).then(response => response.json())
+                        .then(data =>{
+                            if (data.success) {
+                                return Swal.fire({
+                                    title: "Çıkış Yapıldı",
+                                    text: data.message,
+                                    icon: "success",
+                                    timer: 1500
+                                    });
+                            }
+                             else{
+                            return Swal.fire({
+                                    title:"Hata",
+                                    text:"Bir hata oluştu",
+                                    icon:"error",
+                                    timer:1000
+                                    });
+                            }
+                        }).then(() => {
+                            window.location.reload(); // Rafraîchir la page après logout
+                        });
+                        }
+                        });
+                        }
+        
+    </script>
+
 </body>
 
 </html>
