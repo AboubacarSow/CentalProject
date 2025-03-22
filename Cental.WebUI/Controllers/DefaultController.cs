@@ -10,6 +10,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Identity;
 using AutoMapper;
+using Cental.DtoLayer.ReviewDtos;
 
 namespace Cental.WebUI.Controllers
 {
@@ -18,7 +19,8 @@ namespace Cental.WebUI.Controllers
                 ICarService _carManager,CentalDbContext _context,
                 UserManager<AppUser> _userManager,
                 IMapper _mapper,
-                IBookingService _bookingService) : Controller
+                IBookingService _bookingService,
+                IReviewService _reviewService) : Controller
     {
         public IActionResult Index()
         {
@@ -85,12 +87,12 @@ namespace Cental.WebUI.Controllers
                 }
                 else
                 {
-                    return Json(new { succes = false, message = "Bu işlemi gerçekleştirmek için User yektiliye sahip olmanız gerekmektedir" });
+                    return Json(new { success = false, message = "Bu işlemi gerçekleştirmek için User yektiliye sahip olmanız gerekmektedir" });
                 }            
             }
             else
             {
-                return Json(new { sucess = false, message = "Kiralma işlemi yapmanız için sisteme giriş yapmanız gerekmektedir" });
+                return Json(new { success = false, message = "Kiralma işlemi yapmanız için sisteme giriş yapmanız gerekmektedir" });
             }
            
         }
@@ -139,7 +141,15 @@ namespace Cental.WebUI.Controllers
             return RedirectToAction("Cars");
 
         }
-       
-        
+        [HttpPost]
+        public IActionResult MakeRating([FromBody]CreateReviewDto reviewDto)
+        {
+            if (!ModelState.IsValid)
+                return Json(new { success = false, message = "Giridikleriniz tekrar kontrol Ediniz" });
+            var review = _mapper.Map<Review>(reviewDto);
+            _reviewService.TCreate(review);
+            return Json(new { success = true, message = "Yorum Yaptığınız için Cental size teşekkür ediyor" });
+
+        }
     }
 }

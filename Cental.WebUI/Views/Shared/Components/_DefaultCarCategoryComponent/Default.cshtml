@@ -21,47 +21,138 @@
                         <div class="categories-content rounded-bottom p-4">
                             <h4>@car.ModelName</h4>
                             <div class="categories-review mb-4">
-                                <div class="me-3">@car.Reviews.Count Review</div>
+                                <div class="me-3 d-flex justify-content-between">
+                                    <p>@(car.Reviews.Any()? car.Reviews.Average(x => x.Rating): 0) Review</p>
+                                    <a href="#" class="text-primary underline ms-2" data-bs-toggle="modal" data-bs-target="#review-@car.CarId">
+                                        Raiting Yap
+                                    </a>
+                                </div>                             
+                            </div>
+                            @if (car.Reviews.Any())
+                            {
                                 <div class="d-flex justify-content-center text-secondary">
-                                    @for(int i = 0; i < car.Reviews.Count; i++)
+                                    @for (int i = 0; i < car.Reviews.Average(x => x.Rating); i++)
                                     {
-                                    <i class="fas fa-star"></i>
-                                        
+                                        <i class="fas fa-star"></i>
+
                                     }
-                              
-                                
+                                </div>
+
+                            }
+                            <div class="mb-4">
+                                <h4 class="bg-white text-primary rounded-pill py-2 px-4 mb-0">$@car.Price/Day</h4>
                             </div>
+                            <div class="row gy-2 gx-0 text-center mb-4">
+                                <div class="col-4 border-end border-white">
+                                    <i class="fa fa-users text-dark"></i> <span class="text-body ms-1">@car.SeatCount Seat</span>
+                                </div>
+                                <div class="col-4 border-end border-white">
+                                    <i class="fa fa-car text-dark"></i> <span class="text-body ms-1">@car.Transmission</span>
+                                </div>
+                                <div class="col-4">
+                                    <i class="fa fa-gas-pump text-dark"></i> <span class="text-body ms-1">@car.GasType</span>
+                                </div>
+                                <div class="col-4 border-end border-white">
+                                    <i class="fa fa-car text-dark"></i> <span class="text-body ms-1">@car.Year</span>
+                                </div>
+                                <div class="col-4 border-end border-white">
+                                    <i class="fa fa-cogs text-dark"></i> <span class="text-body ms-1">@car.GearType</span>
+                                </div>
+                                <div class="col-4">
+                                    <i class="fa fa-road text-dark"></i> <span class="text-body ms-1">@car.Kilometer K</span>
+                                </div>
+                            </div>
+                            <a href="#" class="btn btn-primary rounded-pill d-flex justify-content-center py-3">Şimdi Kirala</a>
                         </div>
-                        <div class="mb-4">
-                            <h4 class="bg-white text-primary rounded-pill py-2 px-4 mb-0">$@car.Price/Day</h4>
-                        </div>
-                        <div class="row gy-2 gx-0 text-center mb-4">
-                            <div class="col-4 border-end border-white">
-                                <i class="fa fa-users text-dark"></i> <span class="text-body ms-1">@car.SeatCount Seat</span>
-                            </div>
-                            <div class="col-4 border-end border-white">
-                                <i class="fa fa-car text-dark"></i> <span class="text-body ms-1">@car.Transmission</span>
-                            </div>
-                            <div class="col-4">
-                                <i class="fa fa-gas-pump text-dark"></i> <span class="text-body ms-1">@car.GasType</span>
-                            </div>
-                            <div class="col-4 border-end border-white">
-                                <i class="fa fa-car text-dark"></i> <span class="text-body ms-1">@car.Year</span>
-                            </div>
-                            <div class="col-4 border-end border-white">
-                                <i class="fa fa-cogs text-dark"></i> <span class="text-body ms-1">@car.GearType</span>
-                            </div>
-                            <div class="col-4">
-                                <i class="fa fa-road text-dark"></i> <span class="text-body ms-1">@car.Kilometer K</span>
-                            </div>
-                        </div>
-                        <a href="#" class="btn btn-primary rounded-pill d-flex justify-content-center py-3">Şimdi Kirala</a>
                     </div>
                 </div>
-                </div>
-                
+
             }
-            
+
         </div>
     </div>
 </div>
+
+@foreach(var item in Model)
+{
+    <!-- Modal -->
+    <div class="modal fade" id="review-@item.CarId" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">FeedBack</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="post" id="formulaire_@item.CarId">
+                <div class="modal-body">
+                        <input type="hidden" id="car_identity-@item.CarId" value="@item.CarId"/>
+                        <label class="form-label">Kaç Yıldız Veriyorsunuz?</label>
+                        <input type="number" class="form-control" id="number_etoile-@item.CarId" required/>
+             
+                   
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                     <button type="submit" class="btn btn-primary">Uygula</button>
+                </div>
+                </form>
+                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                <script>
+                    document.getElementById('formulaire_@item.CarId').addEventListener('submit',function(event){
+                        event.preventDefault();
+                        let action_url="/Default/MakeRating";
+                        let formData={
+                            Rating:document.getElementById('number_etoile-@item.CarId').value,
+                            CarId:document.getElementById('car_identity-@item.CarId').value
+                        }
+                       
+                        fetch(action_url,{
+                            method:"POST",
+                            headers:{
+                                "Content-Type":"application/json",
+                                "Accept":"application/json"
+                            },
+                            body:JSON.stringify(formData)
+                        })
+                        .then(response=>response.json())
+                        .then(data =>{
+                            if (data.success) {
+                                 Swal.fire({
+                                 position:"center",
+                                 title: " İşlem Başarılı!",
+                                 text: data.message,
+                                 icon: "success",
+                                 timer: 1000
+                                }).then(()=>{window.location.reload();});
+                              // Refresh the page
+
+                         }
+                         else{
+                            Swal.fire({
+                                  position:"center",
+                                  title: "İşlem Başarısız!",
+                                  text: data.message,
+                                  icon: "error",
+                                  showConfirmButton: true,
+                                  timer: 6000
+                            });
+                         }
+                        }).catch(error => {
+                          // Erreur réseau ou autre : afficher un message d'erreur
+                          console.error('Bir hata oluştu',error);
+                          Swal.fire({
+                              position:"center",
+                              title: "Error!",
+                              text: "Bir hata oluştu.",
+                              icon: "error",
+                              showConfirmButton: true,
+                              timer:1500
+                          });
+                        });
+
+                    })
+                </script>
+            </div>
+        </div>
+    </div>
+}

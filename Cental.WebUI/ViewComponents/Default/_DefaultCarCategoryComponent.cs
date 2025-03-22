@@ -5,7 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Cental.WebUI.ViewComponents.Default
 {
-    public class _DefaultCarCategoryComponent(ICarService _carService, IMapper _mapper) :ViewComponent
+    public class _DefaultCarCategoryComponent(ICarService _carService
+        
+        , IMapper _mapper) :ViewComponent
     {
         public IViewComponentResult Invoke()
         {
