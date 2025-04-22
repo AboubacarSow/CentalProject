@@ -4,7 +4,7 @@
 
 
 #### Cental's Logic
-Cental is a web application which with you can rent a car and has a panel for managing different operations like approving a renting request, adding, editing and deleting a car. These tasks are performed by Admin and Manager Users.
+𝐞𝐧𝐭𝐚𝐥 is a web application that allows users to rent cars and includes a panel for managing various operations, such as approving rental requests and adding, editing, or deleting cars. These tasks are performed by Admin and Manager users.
 
 #### Project's Structure
 The project is built using Repository & Unit Of Work Design Pattern and contains five (5) layers
@@ -14,7 +14,7 @@ The project is built using Repository & Unit Of Work Design Pattern and contains
 - **Business Layer**
 - **WebUI Layer**
 
-#### What elements are under capots?
+#### What elements are under hood?
 
 #### 🛠️ Technologies Used:
 - **🗃️ Entity Framework Core**
